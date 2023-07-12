@@ -8,6 +8,7 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 function Login() {
+  const [isloading, setIsloading] = useState(false)
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [userError, setUserError] = useState(null)
@@ -28,7 +29,7 @@ function Login() {
 
   function login() {
     const data = { name: name, password: password }
-
+    setIsloading(true)
     axios.post(baseUrl, data, {
       withCredentials: true,
       headers: {'Content-Type': 'application/json'}, 
@@ -37,11 +38,13 @@ function Login() {
       if (res.status === 200) {
         const {_id, ...resto} = res.data.userData
         setUserinfo({...resto, token: res.data.accessToken})
+        setIsloading(false)
         navigate('home/inicio')
       }
     })
     .catch(err => {
       if (err.response.status === 401) {
+        setIsloading(false)
         if (err.response.data.error === 'user') {
           setUserError(err.response.data.message)
           return
@@ -72,6 +75,7 @@ function Login() {
                 name="username" 
                 id="login-username" 
                 placeholder="Usuario"
+                disabled={isloading}
                 value={name}
                 onChange={e => handleUser(e.target.value)} 
               />
@@ -84,13 +88,14 @@ function Login() {
                 name="password" 
                 id="login-password" 
                 placeholder="Password"
+                disabled={isloading}
                 value={password}
                 onChange={e => handlePassword(e.target.value)} 
               />
               <p className="login-error-text">{passwordError}</p>
             </div>
-
-            <button className="login-boton" onClick={login}>Ingresar</button>
+            { isloading && <span class="loader"></span> }
+            { !isloading && <button className="login-boton" onClick={login}>Ingresar</button> }
 
             <p className="login-foot-text">
               ¿No tienes un usuario aún? <NavLink to={'/register'}>Registrate!</NavLink>
