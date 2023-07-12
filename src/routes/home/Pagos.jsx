@@ -14,6 +14,7 @@ axios.defaults.withCredentials = true
 
 function Pagos() {
   const { userinfo } = useContext(UserContext)
+  const [isloading, setIsloading] = useState(true)
   const [pagos, setPagos] = useState([])
   const [tableData, setTableData] = useState([])
   const [opdetalles, setOpdetalles] = useState([])
@@ -45,6 +46,9 @@ function Pagos() {
 
   function getPagos() {
     const getHeader = {'Authorization': `Bearer ${userinfo.token}`}
+    setIsloading(true)
+    // setTimeout(() => setIsloading(false), 3000)
+
     axios.get(`${baseUrl}pagos`, { headers: getHeader })
     .then(res => {
       setPagos(res.data.resultado)
@@ -58,9 +62,11 @@ function Pagos() {
       const tipos = res.data.resultado.map( pago => pago.tipo )
       const tiposSet = new Set(tipos)
       setOptipos(Array.from(tiposSet).sort())
+      setIsloading(false)
     })
     .catch(err => {
       console.log(err.response.statusText)
+      setIsloading(false)
     })
   }
 
@@ -92,6 +98,9 @@ function Pagos() {
 
   return(
     <>
+      { isloading && <span class="loader-pagos"></span> }
+
+      { !isloading && <>
       <div id="contenedor-acciones">
         <div id="pagos-info">
           <span>
@@ -190,6 +199,7 @@ function Pagos() {
           )
         })}
       </div>
+      </> }
 
       {/* Modal add */}
       <ModalAddPago 
