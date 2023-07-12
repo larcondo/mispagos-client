@@ -1,0 +1,97 @@
+#contenedor-register {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-rows: 15% 70% 15%;
+  grid-template-columns: 100%;
+  /* background-color: blue; */
+}
+
+#register-header {
+  grid-area: span 1 / span 1;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blue; */
+}
+
+#register-form {
+  grid-area: span 1 / span 1;
+  box-sizing: border-box;
+  max-width: 300px;
+  height: 100%;
+  margin: auto auto;
+  padding: 0.5em 1em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: lightblue;
+  border-radius: 20px;
+}
+
+.register-campo {
+  width: 100%;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-flow: column;
+}
+
+.register-boton {
+  padding: 8px 20px;
+  border: 1px solid #555;
+  border-radius: 10px;
+  background-color: #ddd;
+  font-family: 'Work Sans', sans-serif;
+  margin-top: 1em;
+}
+
+.register-boton:hover{
+  cursor: pointer;
+  background-color: #bbb;
+}
+
+#register-fname,
+#register-lname,
+#register-name,
+#register-email,
+#register-password {
+  /* width: 300px; */
+  padding: 0.5em 0.75em;
+  border: 1px solid;
+  border-radius: 0.8rem;
+  padding: 0.7em 1em;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid hsl(195, 53%, 40%);
+}
+
+#register-fname:focus,
+#register-lname:focus,
+#register-name:focus,
+#register-email:focus,
+#register-password:focus {
+  border: 1px solid hsl(195, 53%, 65%);
+  outline: 2px solid hsl(195, 53%, 60%);
+}
+
+#register-fname::selection {
+  background-color: hsl(195, 53%, 35%);
+  color: #e5e5e5;
+}
+
+.register-campo > label {
+  font-size: 0.75em;
+  width: fit-content;
+  padding: 0 0.75em;
+  margin: 0 0 4px 0;
+}
+
+.register-error-text {
+  color: hsl(0, 100%, 40%);
+  font-size: 0.7rem;
+  margin: 2px 0 0 0;
+  padding: 0 1em;
+  /* background-color: blue; */
+  height: 0;
+}

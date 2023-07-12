@@ -1,0 +1,105 @@
+/* Modal */
+.modal {
+  width: 400px;
+  padding: 0;
+  background-color: #cdcdcd;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  box-shadow: 0px 0px 18px #333;
+}
+
+.recuadro-input {
+  width: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em;
+}
+
+.modal-input {
+  padding: 2px 6px;
+  text-align: right;
+  border-radius: 4px;
+  border: 1px solid #9d9d9d;
+  /* width: 40%; */
+  width: 140px;
+}
+
+.modal-header {
+  width: calc(100% - 20px);
+  text-align: center;
+  padding: 1em 0;
+  margin: 10px 0 1em 0;
+  border-radius: 16px 16px;
+  /* text-transform: uppercase; */
+  background-color: #454599;
+  color: #ddd;
+}
+
+.modal-table {
+  margin: 0;
+  width: 80%;
+}
+
+.modal-table td {
+  padding: 0.5em 1em;
+}
+
+.modal-table tr > td:nth-child(1) {
+  text-align: center;
+  width: 50%;
+  text-transform: uppercase;
+}
+
+.modal-table tr > td:nth-child(2) {
+  text-align: center;
+  width: 50%;
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.modal-botones {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  /* background-color: blue; */
+  margin: 2em 0 1em 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .modal {
+    width: 300px;
+    padding: 0;
+  }
+
+  .recuadro-input {
+    /* background-color: red; */
+    width: 85%;
+    margin: 0.5em 0;
+    font-size: 0.8rem;
+  }
+
+  .modal-table {
+    /* margin: 0; */
+    width: 90%;
+    font-size: 0.85em;
+  }
+
+  .modal-table td {
+    padding: 0.5em 0em;
+    /* background-color: red; */
+  }
+}

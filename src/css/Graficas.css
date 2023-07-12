@@ -1,0 +1,133 @@
+.chart-bar-botones {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 1em;
+  row-gap: 0.7em;
+  column-gap: 1em;
+}
+
+.chart-bar-boton {
+  min-width: 14ch;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(240, 38%, 70%);
+  color: hsl(240, 38%, 40%);
+}
+
+.chart-bar-boton:hover {
+  cursor: pointer;
+  color: hsl(240, 38%, 80%);
+  background-color: hsl(240, 38%, 55%);
+}
+
+.chart-bar-boton:active {
+  background-color: hsl(240, 38%, 70%);
+}
+
+.chart-bar-boton.active {
+  background-color: hsl(240, 38%, 40%);
+  color: #f5f5f5;
+}
+
+.chart-bar-container {
+  max-width: 100%;
+  /* max-height: 24em; */
+  box-sizing: border-box;
+  margin: 0 auto;
+  /* padding: 2em 1em; */
+  padding: 2em 0em;
+  display: flex;
+  justify-content: center;
+  /* background-color: lightblue; */
+}
+
+.chart-pie-container {
+  max-width: 80%;
+  max-height: 30em;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0em;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(10, 10%);
+  /* background-color: lightcoral; */
+}
+
+.chart-pie-options {
+  grid-area: span 1 / span 3;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1em;
+  /* margin: 0.5em auto 0 auto; */
+  box-sizing: border-box;
+  padding: 1em;
+  /* background-color: lightgreen; */
+}
+
+#pie-year {
+  padding: 4px 8px;
+  border-radius: 10px;
+  width: 16ch;
+}
+#pie-year:hover {
+  cursor: pointer;
+}
+
+#pie-month {
+  padding: 4px 8px;
+  border-radius: 10px;
+  width: 16ch;
+}
+#pie-month:hover {
+  cursor: pointer;
+}
+
+.chart-pie-options > label > span {
+  margin-right: 1ch;
+}
+
+.chart-pie {
+  grid-area: span 1 / span 7;
+  margin: 0 auto;
+}
+
+
+@media screen and ( max-width: 600px ) {
+  
+  .chart-bar-botones {
+    max-width: 100%;
+    padding: 1em 0;
+    column-gap: 0.7em;
+  }
+  
+  .chart-pie-container {
+    max-width: 100%;
+    margin: 0;
+    grid-template-rows: repeat(10, 10%);
+    grid-template-columns: 100%;
+  }
+
+  .chart-pie-options {
+    /* background-color: burlywood; */
+    grid-area: span 2 / span 1;
+    flex-flow: row wrap;
+    align-self: end;
+  }
+
+}
+
+@media screen and ( min-width: 600px ) {
+  .chart-bar-container {
+    max-height: 24em;
+    /* padding: 2em 1em; */
+    /* background-color: lightblue; */
+  }
+
+}

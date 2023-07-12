@@ -1,0 +1,42 @@
+.col-tipo {
+  min-width: 6ch;
+  width: 8%;
+  text-align: center;
+}
+
+.col-fecha, .col-venc {
+  /* width: 10ch; */
+  min-width: 10ch;
+  width: 10%;
+  text-align: center;
+}
+
+.col-detalle {
+  min-width: 10ch;
+  width: 15%;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.col-importe {
+  min-width: 10ch;
+  width: 14%;
+  text-align: center;
+  /* background-color: blue; */
+}
+
+.col-obs {
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* background-color: pink; */
+}
+
+.col-acciones {
+  width: 8%;
+  min-width: 80px;
+  text-align: center;
+}

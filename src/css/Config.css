@@ -1,0 +1,80 @@
+#config-tabla {
+  border-collapse: collapse;
+  margin: 30px auto;
+  max-width: 300px;
+  /* width: 50%; */
+  font-size: 0.8rem;
+}
+
+#config-tabla tr {
+  height: 20px;
+}
+
+#config-tabla th,
+#config-tabla td {
+  padding: 4px 10px;
+}
+
+#config-tabla tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+#config-tabla tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.config-edit-boton {
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background-color: #77b3c8;
+  color: white;
+  padding: 0 1em;
+}
+
+.config-edit-boton:hover { 
+  background-color: #61a7bf;
+  cursor: pointer;
+}
+.config-edit-boton:active { 
+  background-color: #8ec0d2;
+}
+
+.config-edit-boton-text {
+  display: none;
+  font-size: 0.75rem;
+  padding: 0 6px;
+}
+
+/* 
+#config-logout-form {
+  margin: 20px auto;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+#config-boton-logout {
+  padding: 5px 20px;
+  border: 1px solid #555;
+  border-radius: 10px;
+  background-color: #ddd;
+}
+
+#config-boton-logout:hover {
+  cursor: pointer;
+  background-color: #bbb;
+}
+ */
+
+
+@media screen and ( min-width: 600px ) {
+  #config-tabla {
+    max-width: 90%;
+  }
+
+  .config-edit-boton-text {
+    display: inline-block;
+  }
+
+}
