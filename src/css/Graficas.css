@@ -10,8 +10,12 @@
   column-gap: 1em;
 }
 
+.chart-bar-botones::-webkit-scrollbar {
+  display: none;
+}
+
 .chart-bar-boton {
-  min-width: 14ch;
+  /* min-width: 14ch; */
   padding: 0.5em 1em;
   border: none;
   border-radius: 10px;
@@ -115,8 +119,17 @@
     max-width: 100%;
     padding: 1em 0;
     column-gap: 0.7em;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
   
+  .chart-bar-botones::-webkit-scrollbar {
+    display: none;
+  }
+  .chart-bar-boton {
+    white-space: nowrap;
+    /* min-width: 20ch; */
+  }
   .chart-pie-container {
     max-width: 100%;
     margin: 0;

@@ -74,7 +74,8 @@
   background-color: #e5e5e5;
   margin: 0;
   padding: 1em 0;
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
+  font-size: 0.85em;
 }
 
 #home-navbar ul {
@@ -163,14 +164,13 @@
   #home-navbar ul {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
     justify-content: center;
-    gap: 1em;
-    /* padding-right: 2em; */
+    gap: 6px;
   }
 
-  .home-links {
-    font-size: 0.9em;
+  .home-links, .home-link-active {
+    font-size: 1em;
+    padding: 0.75em 0.8em;
   }
 
   #home-pages {
