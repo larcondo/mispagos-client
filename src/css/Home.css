@@ -165,7 +165,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    gap: 6px;
+    gap: 0;
   }
 
   .home-links, .home-link-active {
