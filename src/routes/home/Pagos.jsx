@@ -103,7 +103,7 @@ function Pagos() {
 
   return(
     <>
-      { isloading && <span class="loader-pagos"></span> }
+      { isloading && <span className="loader-pagos"></span> }
 
       { !isloading && <>
       <div id="contenedor-acciones">

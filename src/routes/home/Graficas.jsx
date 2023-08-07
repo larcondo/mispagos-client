@@ -13,6 +13,7 @@ axios.defaults.withCredentials = true
 
 function Graficas() {
   const { userinfo } = useContext(UserContext)
+  const [isloading, setIsloading] = useState(true)
   const [pagos, setPagos] = useState([])
   const [barData, setBarData] = useState(null)
   const [pieData, setPieData] = useState(null)
@@ -29,6 +30,8 @@ function Graficas() {
   }, [])
 
   const getPagos = () => {
+    
+    setIsloading(true)
     const getHeader = {'Authorization': `Bearer ${userinfo.token}`}
     axios.get(`${baseUrl}pagos`, { headers: getHeader })
     .then(res => {
@@ -47,6 +50,10 @@ function Graficas() {
     .catch(err => {
       console.log(err)
       setDataError({ error: true, message: err.response.statusText })
+    })
+    .finally(() => {
+      // setTimeout(() => setIsloading(false), 2000)
+      setIsloading(false)
     })
   }
 
@@ -157,6 +164,10 @@ function Graficas() {
 
   return(
     <>
+      { isloading && <span className="loader-pagos"></span> }
+
+      { !isloading && 
+      <>
       <h1 className="titulo">Gráficas</h1>
 
       <div style={{display: dataError.error ? 'block': 'none'}}>
@@ -168,7 +179,7 @@ function Graficas() {
 
       <div style={{display: dataError.error ? 'none': 'block'}}>
         
-        <h2 style={{textAlign: 'center', marginTop: '1em'}}>Distribución de Pagos por Detalle</h2>
+        <h2 className="chart-title2">Distribución de Pagos por Detalle</h2>
         
         <div className="chart-bar-botones">
           { opdetalles && opdetalles.map( (opcion, index) => {
@@ -180,7 +191,7 @@ function Graficas() {
           { barData && <GraficoBar data={barData} /> }
         </div>
         
-        <h2 style={{textAlign: 'center', marginTop: '1em'}}>Distribución de Pagos por mes [%]</h2>
+        <h2 className="chart-title2">Distribución de Pagos por mes [%]</h2>
 
         <div className="chart-pie-container">
           <div className="chart-pie-options">
@@ -205,7 +216,7 @@ function Graficas() {
         </div>
 
       </div>
-      
+      </> }
     </>
   );
 }

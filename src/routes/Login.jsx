@@ -94,7 +94,7 @@ function Login() {
               />
               <p className="login-error-text">{passwordError}</p>
             </div>
-            { isloading && <span class="loader"></span> }
+            { isloading && <span className="loader"></span> }
             { !isloading && <button className="login-boton" onClick={login}>Ingresar</button> }
 
             <p className="login-foot-text">

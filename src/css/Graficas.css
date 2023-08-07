@@ -98,6 +98,16 @@
   margin: 0 auto;
 }
 
+.chart-title1 {
+  text-align: center;
+}
+
+.chart-title2 {
+  text-align: center;
+  margin-top: 1em;
+  font-size: 1.2em;
+  color: hsl(240, 38%, 40%);
+}
 
 @media screen and ( max-width: 600px ) {
   
