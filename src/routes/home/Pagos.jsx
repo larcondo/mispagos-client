@@ -8,6 +8,7 @@ import FilaPagoSmall from '../../components/FilaPagoSmall';
 import ModalAddPago from '../../components/ModalAddPago';
 import ModalUpdatePago from '../../components/ModalUpdatePago';
 import ModalDeletePago from '../../components/ModalDeletePago';
+import { MdFilterListAlt } from 'react-icons/md';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true
@@ -25,8 +26,12 @@ function Pagos() {
   const [infodel, setInfodel] = useState({})
   const [infoupd, setInfoupd] = useState({})
   const [filtro, setFiltro] = useState({ tipo: 'todos', detalle: 'todos', year: 'todos', month: 'todos', obs: '' })
+  const [filtrovis, setFiltrovis] = useState(false)
   const [actualPage, setActualPage] = useState(1)
   const [pages, setPages] = useState(0)
+  const styleIcons = {
+    position: 'relative', top: '2px'
+  }
 
   useEffect(() => {
     getPagos()
@@ -111,6 +116,9 @@ function Pagos() {
           </span>
         </div>
         <div id="pagos-botones">
+          <button className="boton-filtro" onClick={() => setFiltrovis(!filtrovis)}>
+            <MdFilterListAlt style={styleIcons} />
+          </button>
           <button id="boton-add" onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setModalAdd(true)
@@ -120,7 +128,7 @@ function Pagos() {
         </div>
       </div>
       
-      <div id="contenedor-filtros">
+      <div id="contenedor-filtros" style={{display: filtrovis ? 'flex' : 'none'}}>
         <div className="filtro">
           <label htmlFor="select-tipo">Tipo:</label>
           <select name="select-tipo" id="select-tipo" onChange={(e) => setFiltro( prev => ({ ...prev, tipo: e.target.value}))}>

@@ -8,7 +8,7 @@
 }
 
 #pagos-info {
-  width: 80%;
+  width: 68%;
   padding: 0.5em;
   display: flex;
   gap: 2em;
@@ -30,6 +30,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  gap: 10px;
 }
 
 #boton-add {
@@ -58,6 +59,25 @@
   padding: 0 0;
   width: 90%;
   margin: 0 auto;
+}
+
+.boton-filtro {
+  width: 36px;
+  height: 36px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 6px;
+  background-color: #454599;
+  color: #eee;
+}
+
+.boton-filtro:hover {
+  cursor: pointer;
+  background-color: hsl(240, 38%, 34%);
+}
+
+.boton-filtro:active {
+  background-color: hsl(240, 38%, 54%);
 }
 
 .filtro {
