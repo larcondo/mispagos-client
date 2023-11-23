@@ -33,7 +33,7 @@ function Graficas() {
     
     setIsloading(true)
     const getHeader = {'Authorization': `Bearer ${userinfo.token}`}
-    axios.get(`${baseUrl}pagos`, { headers: getHeader })
+    axios.get(`${baseUrl}/pagos`, { headers: getHeader })
     .then(res => {
       setPagos(res.data.resultado)
 

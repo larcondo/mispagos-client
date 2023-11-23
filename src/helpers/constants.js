@@ -1,4 +1,4 @@
-export const baseUrl = 'https://mispagosapi.onrender.com/'
+export const baseUrl = '/api'
 
 export const opYear = ['2023', '2022', '2021']
 

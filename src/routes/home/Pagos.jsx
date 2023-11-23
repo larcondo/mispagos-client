@@ -54,7 +54,7 @@ function Pagos() {
     setIsloading(true)
     // setTimeout(() => setIsloading(false), 3000)
 
-    axios.get(`${baseUrl}pagos`, { headers: getHeader })
+    axios.get(`${baseUrl}/pagos`, { headers: getHeader })
     .then(res => {
       setPagos(res.data.resultado)
       verificarFiltros(res.data.resultado, filtro)

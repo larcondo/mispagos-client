@@ -21,7 +21,7 @@ function ModalUpdatePago( props ) {
   }, [props.visible])
 
   const updatePago = () => {
-    const url = `${baseUrl}pagos/${props.infoupd._id}`
+    const url = `${baseUrl}/pagos/${props.infoupd._id}`
     const putHeaders = {
       'Authorization': `Bearer ${props.token}`,
       'Content-Type': 'application/json'

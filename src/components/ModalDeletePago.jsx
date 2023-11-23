@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true
 function ModalDeletePago(props) {
 
   const deletePago = () => {
-    const url = `${baseUrl}pagos/${props.infodel._id}`
+    const url = `${baseUrl}/pagos/${props.infodel._id}`
     const deleteHeaders = { 'Authorization': `Bearer ${props.token}` }
     axios.delete(url, { headers: deleteHeaders })
     .then( response => {

@@ -34,7 +34,7 @@ function Home() {
 
   function getNewToken () {
     setTimeout(() => {
-      axios.get(baseUrl + 'refresh', { withCredentials: true })
+      axios.get(`${baseUrl}/refresh`, { withCredentials: true })
       .then( response => {
         if (response.status === 200) {
           setUserinfo( prev => {return {...prev, token: response.data.accessToken}})
@@ -66,7 +66,7 @@ function Home() {
   const logout = () => {
     const data = { name: userinfo.name }
 
-    axios.get(baseUrl + 'logout', data, { withCredentials: true })
+    axios.get(`${baseUrl}/logout`, data, { withCredentials: true })
     .then(res => {
       if(res.status === 200) {
         setUserinfo({})

@@ -41,7 +41,7 @@ function Register() {
     if (passwordWrong) return setErrorPassword(passwordWrong)
 
     const postHeaders = {'Content-Type': 'application/json'}
-    axios.post(baseUrl + 'register', data, {
+    axios.post(`${baseUrl}/register`, data, {
       withCredentials: true,
       headers: postHeaders
     })

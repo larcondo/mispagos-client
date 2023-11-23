@@ -87,7 +87,7 @@ function ModalConfigFirstName({ visible, setVisible, userinfo, setUserinfo }) {
     const newFirstName = document.getElementById('newFirstName')
     const data = { name: userinfo.name, firstName: newFirstName.value }
 
-    const url = `${baseUrl}config/firstName`
+    const url = `${baseUrl}/config/firstName`
     const postHeaders = {
       'Authorization': `Bearer ${userinfo.token}`,
       'Content-Type': 'application/json'
@@ -141,7 +141,7 @@ function ModalConfigLastName({ visible, setVisible, userinfo, setUserinfo }) {
     const newLastName = document.getElementById('newLastName')
     const data = { name: userinfo.name, lastName: newLastName.value }
 
-    const url = `${baseUrl}config/lastName`
+    const url = `${baseUrl}/config/lastName`
     const postHeaders = {
       'Authorization': `Bearer ${userinfo.token}`,
       'Content-Type': 'application/json'
@@ -195,7 +195,7 @@ function ModalConfigEmail({ visible, setVisible, userinfo, setUserinfo }) {
     const newEmail = document.getElementById('newEmail')
     const data = { name: userinfo.name, email: newEmail.value }
 
-    const url = `${baseUrl}config/email`
+    const url = `${baseUrl}/config/email`
     const postHeaders = {
       'Authorization': `Bearer ${userinfo.token}`,
       'Content-Type': 'application/json'

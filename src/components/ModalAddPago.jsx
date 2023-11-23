@@ -18,7 +18,7 @@ function ModalAddPago(props) {
   )
 
   const addPago = () => {
-    const url = baseUrl + 'pagos'
+    const url = `${baseUrl}/pagos`
     const postHeaders = {
       'Authorization': `Bearer ${props.token}`,
       'Content-Type': 'application/json'
