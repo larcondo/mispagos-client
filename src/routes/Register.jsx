@@ -6,10 +6,7 @@ import {
   validarEmail, 
   validarPassword 
 } from '../helpers/general'
-import { baseUrl } from '../helpers/constants'
-import axios from 'axios'
-
-axios.defaults.withCredentials = true
+import registerService from '../services/register'
 
 function Register() {
   const [fname, setFname] = useState('')
@@ -17,34 +14,30 @@ function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [passw, setPassw] = useState('')
-  const [errorEmail, setErrorEmail] = useState(null)
-  const [errorName, setErrorName] = useState(null)
-  const [errorPassword, setErrorPassword] = useState(null)
+  const [error, setError] = useState({ type: null, text: null })
   const navigate = useNavigate()
 
-  const registerUser = () => {
+  const registerUser = (event) => {
+    event.preventDefault()
+    
+    const nameWrong = validarNombreUsuario(name)
+    if (nameWrong) return setError({ type: 'name', text: nameWrong})
+
+    const emailWrong = validarEmail(email)
+    if (emailWrong) return setError({ type: 'email', text: emailWrong})
+
+    const passwordWrong = validarPassword(passw)
+    if (passwordWrong) return setError({ type: 'password', text: passwordWrong})
+
     const data = {
-      name: name,
+      name,
       password: passw,
-      email: email,
+      email,
       firstName: fname,
       lastName: lname
     }
 
-    const nameWrong = validarNombreUsuario(name)
-    if (nameWrong) return setErrorName(nameWrong)
-
-    const emailWrong = validarEmail(email)
-    if (emailWrong) return setErrorEmail(emailWrong)
-
-    const passwordWrong = validarPassword(passw)
-    if (passwordWrong) return setErrorPassword(passwordWrong)
-
-    const postHeaders = {'Content-Type': 'application/json'}
-    axios.post(`${baseUrl}/register`, data, {
-      withCredentials: true,
-      headers: postHeaders
-    })
+    registerService.register(data)
     .then( res => {
       if (res.status === 201) {
         alert(res.data.message)
@@ -54,10 +47,9 @@ function Register() {
       }
     })
     .catch( err => {
+      console.log(err)
       alert('Hubo un error al crear el usuario')
     })
-
-    
   }
 
   return(
@@ -69,7 +61,7 @@ function Register() {
         </div>
 
         <div>
-            <div id="register-form">
+            <form id="register-form" onSubmit={registerUser}>
 
               <div className="register-campo">
                 <label htmlFor="register-fname">Nombre:</label>
@@ -99,10 +91,10 @@ function Register() {
                   value={email}
                   onChange={e => {
                     setEmail(e.target.value)
-                    setErrorEmail('')
+                    setError({ type: null, text: null })
                   }}
                 />
-                <p className="register-error-text">{ errorEmail }</p>
+                <p className="register-error-text">{ error.type === 'email' ? error.text : null }</p>
               </div>
 
               <div className="register-campo">
@@ -113,10 +105,10 @@ function Register() {
                   value={name}
                   onChange={e => {
                     setName(e.target.value)
-                    setErrorName('')
+                    setError({ type: null, text: null })
                   }} 
                 />
-                <p className="register-error-text">{ errorName }</p>
+                <p className="register-error-text">{ error.type === 'name' ? error.text : null }</p>
               </div>
 
               <div className="register-campo">
@@ -127,15 +119,15 @@ function Register() {
                   value={passw}
                   onChange={e => {
                     setPassw(e.target.value)
-                    setErrorPassword('')
+                    setError({ type: null, text: null })
                   }} 
                 />
-                <p className="register-error-text">{ errorPassword }</p>
+                <p className="register-error-text">{ error.type === 'password' ? error.text : null }</p>
               </div>
 
-              <button className="register-boton" onClick={registerUser}>Registrarse</button>
+              <button className="register-boton" type="submit">Registrarse</button>
 
-            </div>
+            </form>
         </div>
         
 
