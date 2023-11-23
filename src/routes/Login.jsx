@@ -2,7 +2,7 @@ import '../css/Login.css'
 import { useState, useContext } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { UserContext } from '../contexts/userDetails'
-import loginService from '../services/login'
+import userService from '../services/user'
 
 const UNKNOWN_ERROR_TEXT = 'Error desconocido. Inténtelo más tarde.'
 
@@ -35,7 +35,7 @@ function Login() {
 
     setIsloading(true)
 
-    loginService.login({ name, password })
+    userService.login({ name, password })
     .then(res => {
       if (res.status === 200) {
         const { _id, ...userData } = res.data.userData

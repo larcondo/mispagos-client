@@ -1,13 +1,12 @@
 import '../css/Home.css'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
-import { UserContext } from '../contexts/userDetails';
-import { baseUrl } from '../helpers/constants'
-import axios from 'axios';
+import { UserContext } from '../contexts/userDetails'
+import userService from '../services/user'
+import Footer from '../components/Footer'
 import { 
   MdAccountCircle, MdHome, MdPayments, MdBarChart, MdSettings
 } from 'react-icons/md'
-axios.defaults.withCredentials = true
 
 // const INTERVALO_REFRESH = 1000 * 60 * 14
 const INTERVALO_REFRESH = 1000 * 60 * 15
@@ -34,7 +33,7 @@ function Home() {
 
   function getNewToken () {
     setTimeout(() => {
-      axios.get(`${baseUrl}/refresh`, { withCredentials: true })
+      userService.refresh()
       .then( response => {
         if (response.status === 200) {
           setUserinfo( prev => {return {...prev, token: response.data.accessToken}})
@@ -44,15 +43,14 @@ function Home() {
         }
       })
       .catch( error => {
+        console.log(error)
         alert('Error al refrescar token!')
         logout()
       })
 
       getNewToken()
     }, INTERVALO_REFRESH)
-
   }
-
 
   useEffect(() => {
     if (!userinfo.name) { 
@@ -64,9 +62,7 @@ function Home() {
   }, [])
 
   const logout = () => {
-    const data = { name: userinfo.name }
-
-    axios.get(`${baseUrl}/logout`, data, { withCredentials: true })
+    userService.logout(userinfo.name)
     .then(res => {
       if(res.status === 200) {
         setUserinfo({})
@@ -129,14 +125,14 @@ function Home() {
           </li>
         </ul>
       </nav>
+      
       <div id="home-pages">
         {/* Donde se renderizan las sub-paginas */}
         <Outlet />
       </div>
-      <footer id="home-footer">
-        <p>Creado por: Lucas</p>
-        <p>React + NodeJS + Express</p>
-      </footer>
+      
+      <Footer id="home-footer" />
+
     </div>
   );
 }

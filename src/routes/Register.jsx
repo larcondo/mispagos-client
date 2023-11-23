@@ -6,7 +6,7 @@ import {
   validarEmail, 
   validarPassword 
 } from '../helpers/general'
-import registerService from '../services/register'
+import userService from '../services/user'
 
 function Register() {
   const [fname, setFname] = useState('')
@@ -37,7 +37,7 @@ function Register() {
       lastName: lname
     }
 
-    registerService.register(data)
+    userService.register(data)
     .then( res => {
       if (res.status === 201) {
         alert(res.data.message)
