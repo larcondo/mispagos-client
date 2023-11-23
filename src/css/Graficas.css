@@ -139,9 +139,10 @@
 
   .chart-pie-options {
     /* background-color: burlywood; */
-    grid-area: span 2 / span 1;
+    grid-area: span 3 / span 1;
     flex-flow: row wrap;
-    align-self: end;
+    /* align-self: end; */
+    align-self: center;
   }
 
 }
