@@ -1,11 +1,9 @@
+import '../../css/Config.css';
 import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/userDetails';
 import { MdEditSquare } from 'react-icons/md';
-import { baseUrl } from '../../helpers/constants'
-import '../../css/Config.css';
-import axios from 'axios';
 
-axios.defaults.withCredentials = true
+import configService from '../../services/config';
 
 function Config() {
   const { userinfo, setUserinfo } = useContext(UserContext)
@@ -87,13 +85,7 @@ function ModalConfigFirstName({ visible, setVisible, userinfo, setUserinfo }) {
     const newFirstName = document.getElementById('newFirstName')
     const data = { name: userinfo.name, firstName: newFirstName.value }
 
-    const url = `${baseUrl}/config/firstName`
-    const postHeaders = {
-      'Authorization': `Bearer ${userinfo.token}`,
-      'Content-Type': 'application/json'
-    }
-
-    axios.post(url, data, { headers: postHeaders })
+    configService.changeFirstName(data, userinfo.token)
     .then( response => {
       if (response.status === 200) {
         const { firstName, ...resto } = userinfo
@@ -141,12 +133,7 @@ function ModalConfigLastName({ visible, setVisible, userinfo, setUserinfo }) {
     const newLastName = document.getElementById('newLastName')
     const data = { name: userinfo.name, lastName: newLastName.value }
 
-    const url = `${baseUrl}/config/lastName`
-    const postHeaders = {
-      'Authorization': `Bearer ${userinfo.token}`,
-      'Content-Type': 'application/json'
-    }
-    axios.post(url, data, { headers: postHeaders })
+    configService.changeLastName(data, userinfo.token)
     .then( response => {
       if (response.status === 200) {
         const { lastName, ...resto } = userinfo
@@ -195,12 +182,7 @@ function ModalConfigEmail({ visible, setVisible, userinfo, setUserinfo }) {
     const newEmail = document.getElementById('newEmail')
     const data = { name: userinfo.name, email: newEmail.value }
 
-    const url = `${baseUrl}/config/email`
-    const postHeaders = {
-      'Authorization': `Bearer ${userinfo.token}`,
-      'Content-Type': 'application/json'
-    }
-    axios.post(url, data, { headers: postHeaders })
+    configService.changeEmail(data, userinfo.token)
     .then( response => {
       if (response.status === 200) {
         const { email, ...resto } = userinfo

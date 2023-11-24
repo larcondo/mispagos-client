@@ -1,14 +1,10 @@
-import { baseUrl } from '../helpers/constants'
+import pagosService from '../services/pagos'
 import { numberToCurrency } from '../helpers/general'
-import axios from 'axios'
-axios.defaults.withCredentials = true
 
 function ModalDeletePago(props) {
 
   const deletePago = () => {
-    const url = `${baseUrl}/pagos/${props.infodel._id}`
-    const deleteHeaders = { 'Authorization': `Bearer ${props.token}` }
-    axios.delete(url, { headers: deleteHeaders })
+    pagosService.remove(props.infodel._id, props.token)
     .then( response => {
       if (response.status === 200) {
         props.setVisible(false)

@@ -2,16 +2,15 @@ import '../../css/Pagos.css';
 import { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../contexts/userDetails';
 import { numberToCurrency } from '../../helpers/general';
-import { opYear, opMonth, baseUrl } from '../../helpers/constants';
+import { opYear, opMonth } from '../../helpers/constants';
 import FilaPago from '../../components/FilaPago';
 import FilaPagoSmall from '../../components/FilaPagoSmall';
 import ModalAddPago from '../../components/ModalAddPago';
 import ModalUpdatePago from '../../components/ModalUpdatePago';
 import ModalDeletePago from '../../components/ModalDeletePago';
 import { MdFilterListAlt } from 'react-icons/md';
-import axios from 'axios';
 
-axios.defaults.withCredentials = true
+import pagosService from '../../services/pagos';
 
 function Pagos() {
   const { userinfo } = useContext(UserContext)
@@ -50,11 +49,10 @@ function Pagos() {
   }, [tableData])
 
   function getPagos() {
-    const getHeader = {'Authorization': `Bearer ${userinfo.token}`}
     setIsloading(true)
     // setTimeout(() => setIsloading(false), 3000)
 
-    axios.get(`${baseUrl}/pagos`, { headers: getHeader })
+    pagosService.getAll(userinfo.token)
     .then(res => {
       setPagos(res.data.resultado)
       verificarFiltros(res.data.resultado, filtro)

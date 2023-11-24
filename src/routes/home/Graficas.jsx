@@ -5,11 +5,10 @@ import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts/userDetails';
 import GraficoBar from '../../components/GraficoBar';
 import GraficoPie from '../../components/GraficoPie';
-import { opMonth, baseUrl } from '../../helpers/constants';
+import { opMonth } from '../../helpers/constants';
 import { getDiferentesAnios, getDiferentesDetalles } from '../../helpers/graficos';
-import axios from 'axios';
 
-axios.defaults.withCredentials = true
+import pagosService from '../../services/pagos';
 
 function Graficas() {
   const { userinfo } = useContext(UserContext)
@@ -30,10 +29,9 @@ function Graficas() {
   }, [])
 
   const getPagos = () => {
-    
     setIsloading(true)
-    const getHeader = {'Authorization': `Bearer ${userinfo.token}`}
-    axios.get(`${baseUrl}/pagos`, { headers: getHeader })
+
+    pagosService.getAll(userinfo.token)
     .then(res => {
       setPagos(res.data.resultado)
 

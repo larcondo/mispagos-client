@@ -1,8 +1,6 @@
 import '../css/components/Modals.css'
 import { useState } from 'react'
-import { baseUrl } from '../helpers/constants'
-import axios from 'axios'
-axios.defaults.withCredentials = true
+import pagosService from '../services/pagos'
 
 function ModalAddPago(props) {
   const [nuevopago, setNuevopago] = useState(
@@ -18,12 +16,7 @@ function ModalAddPago(props) {
   )
 
   const addPago = () => {
-    const url = `${baseUrl}/pagos`
-    const postHeaders = {
-      'Authorization': `Bearer ${props.token}`,
-      'Content-Type': 'application/json'
-    }
-    axios.post(url, nuevopago, { headers: postHeaders })
+    pagosService.add(nuevopago, props.token)
     .then( response => {
       if (response.status === 200) {
         props.setVisible(false)

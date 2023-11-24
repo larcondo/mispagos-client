@@ -1,8 +1,6 @@
 import '../css/components/Modals.css'
 import { useState, useEffect } from 'react';
-import { baseUrl } from '../helpers/constants'
-import axios from 'axios'
-axios.defaults.withCredentials = true
+import pagosService from '../services/pagos';
 
 function ModalUpdatePago( props ) {
   const [nuevopago, setNuevopago] = useState({ tipo: '', fecha: '', detalle: '', importe: 0, vencimiento: '', observaciones: '' })
@@ -21,12 +19,7 @@ function ModalUpdatePago( props ) {
   }, [props.visible])
 
   const updatePago = () => {
-    const url = `${baseUrl}/pagos/${props.infoupd._id}`
-    const putHeaders = {
-      'Authorization': `Bearer ${props.token}`,
-      'Content-Type': 'application/json'
-    }
-    axios.put(url, nuevopago, { headers: putHeaders })
+    pagosService.update(props.infoupd._id, nuevopago, props.token)
     .then( response => {
       if (response.status === 200) {
         props.setVisible(false)
