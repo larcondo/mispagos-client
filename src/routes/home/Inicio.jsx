@@ -33,7 +33,7 @@ function Inicio() {
       </section>
 
       <section style={{ margin: '1em 0'}}>
-        <h2>Últimos pagos realizados</h2>
+        <h2 style={{margin: '1em 0'}}>Últimos pagos realizados</h2>
         {
           data.lastEight.length < 1
             ? <p>No se encontraron pagos.</p>
