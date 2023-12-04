@@ -104,6 +104,7 @@ function Pagos() {
       { isloading && <span className="loader-pagos"></span> }
 
       { !isloading && <>
+      <h1 className="titulo">Pagos</h1>
       <div id="contenedor-acciones">
         <div id="pagos-info">
           <span>

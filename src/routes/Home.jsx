@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import { 
   MdAccountCircle, MdHome, MdPayments, MdBarChart, MdSettings
 } from 'react-icons/md'
+import MisPagosLogo from '../assets/recibo.png'
 
 // const INTERVALO_REFRESH = 1000 * 60 * 14
 const INTERVALO_REFRESH = 1000 * 60 * 15
@@ -83,6 +84,7 @@ function Home() {
     <div id="contenedor-home">
       <div id="home-encabezado">
         <div>
+          <img src={MisPagosLogo} alt="Mis Pagos Logo" width="48px" />
           <h1>Mis Pagos</h1>
         </div>
         <div>
@@ -105,22 +107,25 @@ function Home() {
         <ul>
           <li className="home-li">
             <NavLink to={'inicio'} className={navlinkClass}>
-              <MdHome style={styleNavIcon} /> Home
+              <MdHome style={styleNavIcon} /> <span className='navlink-text'>Home</span>
             </NavLink>
           </li>
           <li className="home-li">
             <NavLink to={'pagos'} className={navlinkClass}>
-              <MdPayments style={styleNavIcon} /> Pagos
+              <MdPayments style={styleNavIcon} />
+              <span className="navlink-text">Pagos</span>
             </NavLink>
           </li>
           <li className="home-li">
             <NavLink to={'graficas'} className={navlinkClass}>
-              <MdBarChart style={styleNavIcon} /> Graficas
+              <MdBarChart style={styleNavIcon} />
+              <span className="navlink-text">Graficas</span>
             </NavLink>
           </li>
           <li className="home-li">
             <NavLink to={'config'} className={navlinkClass}>
-              <MdSettings style={styleNavIcon} /> Ajustes
+              <MdSettings style={styleNavIcon} />
+              <span className="navlink-text">Ajustes</span>
             </NavLink>
           </li>
         </ul>

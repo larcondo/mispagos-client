@@ -1,0 +1,30 @@
+footer {
+  color: #1c1c1c;
+}
+
+.footer-appinfo {
+  font-size: 12px;
+  padding: 0;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1em;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: auto;  
+}
+
+.footer-icons svg {
+  color: #1c1c1c;
+}
+
+.footer-text {
+  width: 96%;
+  box-sizing: border-box;
+  padding: 8px;
+  font-size: 11px;
+  text-align: center;
+  border-top: 1px solid hsl(240, 38%, 78%);
+  margin-top: auto;
+}

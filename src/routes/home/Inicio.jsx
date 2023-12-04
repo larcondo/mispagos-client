@@ -25,7 +25,7 @@ function Inicio() {
   if (isloading) return <span className='loader-pagos'></span>
 
   return(
-    <>
+    <div className='contenedor-inicio'>
       <h1>Hola, { userinfo.firstName }!</h1>
 
       <section>
@@ -33,7 +33,7 @@ function Inicio() {
       </section>
 
       <section style={{ margin: '1em 0'}}>
-        <h2 style={{margin: '1em 0'}}>Últimos pagos realizados</h2>
+        <h3 style={{margin: '1em 0'}}>Últimos pagos realizados</h3>
         {
           data.lastEight.length < 1
             ? <p>No se encontraron pagos.</p>
@@ -42,7 +42,7 @@ function Inicio() {
               </div>
         }
       </section>
-    </>
+    </div>
   );
 }
 
@@ -67,7 +67,7 @@ const SummaryPanel = ({ values }) => {
 
   return(
     <>
-      <h2 style={{marginTop: '1em'}}>Resumen del mes: { values.monthName }</h2>
+      <h3 style={{marginTop: '1em'}}>Resumen del mes: { values.monthName }</h3>
       <div className='summary-panel'>
         <SummaryValue label='Minimo' value={values.min} />
         <SummaryValue label='Maximo' value={values.max} />

@@ -7,11 +7,17 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* #root {
-  background-color: lightblue;
-} */
+#root {
+  /* --titles-font: 'Trebuchet MS', sans-serif; */
+  --titles-font: 'Source Sans Pro', sans-serif;
+  --color-font-dark: hsl(240, 38%, 24%);
+  --color-font-medium: hsl(240, 38%, 34%);
+  --color-font-light: hsl(240, 38%, 64%);
+}
 
 .titulo {
   text-align: center;
   margin: 0;
+  font-family: var(--titles-font);
+  color: var(--color-font-dark);
 }

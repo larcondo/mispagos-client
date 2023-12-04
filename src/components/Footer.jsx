@@ -1,8 +1,32 @@
+import '../css/components/Footer.css'
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaFacebook,
+  FaInstagram
+} from "react-icons/fa";
+
 const Footer = ({ id }) => {
   return(
     <footer id={ id }>
-      <p>Creado por: Lucas</p>
-      <p>React + NodeJS + Express</p>
+
+      <div className="footer-icons">
+        <FaGithub />
+        <FaLinkedin />
+        <FaTwitter />
+        <FaFacebook />
+        <FaInstagram />
+      </div>
+
+      <div className="footer-appinfo">
+        <p>MisPagos app - versión 2023</p>
+      </div>
+      
+      <div className="footer-text">
+        <p>Creado por: <i>larcondo</i> - 2023 - Todos los derechos reservados</p>
+      </div>
+
     </footer>
   )
 }

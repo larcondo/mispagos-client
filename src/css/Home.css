@@ -4,7 +4,7 @@
   display: grid;
   /* height: 100vh; */
   width: 100%;
-  grid-template-rows: 100px repeat(10, minmax(80px, 1fr)) 100px;
+  grid-template-rows: 80px repeat(10, minmax(80px, 1fr)) 150px;
   /* grid-template-rows: 100px repeat(10, auto) 100px; */
   grid-template-columns: repeat(10, 10%);
 }
@@ -16,22 +16,44 @@
   padding: 1em 2em;
   display: grid;
   grid-template-rows: 100%;
-  grid-template-columns: repeat(10, 10%);
+  /* grid-template-columns: repeat(10, 10%); */
+  grid-template-columns: repeat(8, 1fr) 50px 50px;
 }
 
 #home-encabezado > div:nth-child(1) {
   /* background-color: red; */
   /* color: yellow; */
-  grid-area: span 1 / span 6;
+  grid-row: 1 / 2;
+  grid-column: 1 / 8;
   display: flex;
   align-items: center;
-  padding: 0 1em;
+  padding: 0;
+  position: relative;
+}
+
+#home-encabezado > div:nth-child(1) h1 {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-style: italic;
+  font-size: 2em;
+  position: absolute;
+  left: 0px;
+  background-color: hsl(240, 38%, 64%);
+  color: hsl(240, 38%, 34%);
+  border-radius: 10px 0 10px 0;
+  padding: 10px 12px;
+  padding-left: 56px;
+}
+
+#home-encabezado > div:nth-child(1) img {
+  z-index: 2;
+  padding-left: 10px;
 }
 
 #home-encabezado > div:nth-child(2) {
   /* background-color: orange; */
   /* color: green; */
-  grid-area: span 1 / span 4;
+  grid-row: 1 / 2;
+  grid-column: 8 / 11;
   display: flex;
   flex-flow: row;
   justify-content: flex-end;
@@ -124,11 +146,12 @@
 #home-footer {
   grid-area: span 1 / span 10;
   margin: 0;
-  background-color: lightgreen;
+  background-color: hsl(240, 38%, 84%);
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
   align-items: center;
-  padding: 1em;
+  /* gap: 1em; */
 }
 
 
@@ -150,7 +173,7 @@
 /* Media queries */
 @media screen and ( max-width: 1000px ) {
   #contenedor-home {
-    grid-template-rows: 100px auto repeat(9, minmax(80px, 1fr)) 100px;
+    grid-template-rows: 80px auto repeat(9, minmax(80px, 1fr)) 130px;
   }
 
   #home-encabezado {
@@ -175,5 +198,29 @@
 
   #home-pages {
     grid-area: span 9 / span 10;
+  }
+}
+
+@media screen and ( max-width: 400px ) {
+  #home-encabezado > div:nth-child(1) h1 {
+    font-size: 1.7em;
+  }
+
+  #home-navbar ul {
+    justify-content: space-evenly;
+  }
+
+  .home-links .navlink-text {
+    color: red;
+    display: none;
+  }
+
+  .home-link-active .navlink-text {
+    display: block;
+  }
+
+  .home-li svg {
+    /* color: green; */
+    font-size: 16px;
   }
 }

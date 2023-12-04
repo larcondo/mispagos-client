@@ -110,7 +110,8 @@
   text-align: center;
   margin-top: 1em;
   font-size: 1.2em;
-  color: hsl(240, 38%, 40%);
+  color: var(--color-font-medium);
+  font-family: var(--titles-font);
 }
 
 @media screen and ( max-width: 600px ) {
