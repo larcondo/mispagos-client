@@ -1,0 +1,99 @@
+.ultimos-pagos {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 1em auto;
+  row-gap: 1em;
+}
+
+.pago-card {
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  box-shadow: 0px 0px 8px 1px #cacaca;
+  width: 90%;
+  padding: 5px 10px;
+  justify-self: center;
+}
+
+.pago-card .fecha {
+  font-size: 0.8em;
+  text-align: left;
+  color: #434343;
+}
+
+.pago-card .importe {
+  font-size: 26px;
+  white-space: nowrap;
+  text-align: right;
+  /* color: #1c1c1c; */
+}
+
+.pago-card .detalle {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  color: #575757;
+}
+
+.summary-panel {
+  margin: 1em auto;
+  display: grid;
+  grid-template-columns: 47% 47%;
+  row-gap: 1em;
+  /* column-gap: 6%; */
+}
+
+.summary-value {
+  /* background-color: lightblue; */
+  padding: 8px 0;
+  box-sizing: border-box;
+  width: 100%;
+  justify-self: center;
+}
+
+.summary-value p:nth-child(1) {
+  text-align: center;
+  font-size: 20px;
+}
+
+.summary-value p:nth-child(2) {
+  text-align: center;
+  font-size: 0.8em;
+  color: #575757;
+}
+
+
+@media screen and (min-width: 600px) {
+  .ultimos-pagos {
+    grid-template-columns: repeat(3, 33.33%);
+  }
+  
+  .summary-panel {
+    grid-template-columns: repeat(4, 25%);
+    column-gap: 0;
+  }
+
+  .summary-value {
+    padding: 16px 0;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .ultimos-pagos {
+    grid-template-columns: repeat(4, 25%);
+  }
+
+  .summary-panel {
+    /* background-color:  red; */
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .summary-value p:nth-child(1) {
+    font-size: 24px;
+  }
+
+}

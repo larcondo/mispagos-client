@@ -1,5 +1,8 @@
 export function numberToCurrency( num ) {
-  return '$ ' + num.toLocaleString('es-AR', { minimumFractionDigits: 2 });
+  return '$ ' + num.toLocaleString('es-AR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 }
 
 // Para pagina Register

@@ -2,6 +2,10 @@ import axios from 'axios'
 import { baseUrl } from '../helpers/constants'
 axios.defaults.withCredentials = true
 
+const getSummary = (token) => {
+  return axios.get(`${baseUrl}/pagos/summary`, { headers: { 'Authorization': `Bearer ${token}` }})
+}
+
 const getAll = (token) => {
   return axios.get(
     `${baseUrl}/pagos`,
@@ -50,9 +54,11 @@ const update = (id, newPago, token) => {
   )
 }
 
+
 export default {
+  getSummary,
   getAll,
   add,
   remove,
-  update
+  update,
 }
