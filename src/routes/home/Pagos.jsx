@@ -64,10 +64,31 @@ function Pagos() {
     })
   }
 
+  const refreshPagos = (newPagos) => {
+    setPagos(newPagos)
+    verificarFiltros(newPagos, filtro)
+  }
+
+  const addPago = (added) => refreshPagos(pagos.concat(added))
+
+  const updatePago = (updated) => {
+    const newPagos = pagos
+      .filter(e => e._id !== updated._id)
+      .concat(updated)
+    refreshPagos(newPagos)
+  }
+
+  const deletePago = (deleted) => {
+    const newPagos = pagos.filter(e => e._id !== deleted._id)
+    refreshPagos(newPagos)
+  }
+
   function verificarFiltros( arrayPagos, objFiltros ) {
     let aux = []
     // Filtro por Tipo
-    aux = (objFiltros.tipo.toLowerCase() === 'todos') ? arrayPagos : arrayPagos.filter( e => e.tipo === objFiltros.tipo )
+    aux = (objFiltros.tipo.toLowerCase() === 'todos')
+      ? arrayPagos.sort((a, b)=> new Date(b.fecha) - new Date(a.fecha))
+      : arrayPagos.filter( e => e.tipo === objFiltros.tipo )
     // Filtro por Detalle
     aux = (objFiltros.detalle.toLowerCase() === 'todos') ? aux : aux.filter( e => e.detalle === objFiltros.detalle )
     // Filtro por Año
@@ -205,7 +226,7 @@ function Pagos() {
         setVisible={setModalAdd}
         username={userinfo.name}
         token={userinfo.token}
-        refreshFn={getPagos}
+        afterAdd={addPago}
       />
 
       {/* Modal update */}
@@ -215,7 +236,7 @@ function Pagos() {
         infoupd={infoupd}
         username={userinfo.name}
         token={userinfo.token}
-        refreshFn={getPagos}
+        afterUpdate={updatePago}
       />
 
       {/* Modal delete */}
@@ -225,7 +246,7 @@ function Pagos() {
         infodel={infodel}
         username={userinfo.name}
         token={userinfo.token}
-        refreshFn={getPagos} 
+        afterDelete={deletePago} 
       />
 
     </>

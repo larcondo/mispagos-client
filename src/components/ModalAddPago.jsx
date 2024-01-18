@@ -2,7 +2,7 @@ import '../css/components/Modals.css'
 import { useState } from 'react'
 import pagosService from '../services/pagos'
 
-function ModalAddPago(props) {
+function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
   const [nuevopago, setNuevopago] = useState(
     {
       tipo: '',
@@ -11,16 +11,16 @@ function ModalAddPago(props) {
       importe: 0,
       vencimiento: '',
       observaciones: '',
-      username: props.username
+      username: username
     }
   )
 
-  const addPago = () => {
-    pagosService.add(nuevopago, props.token)
+  const add = () => {
+    pagosService.add(nuevopago, token)
     .then( response => {
       if (response.status === 200) {
-        props.setVisible(false)
-        props.refreshFn()   // refresco los datos
+        setVisible(false)
+        afterAdd(response.data.added)   // refresco los datos
         borrarCampos()
       }
     })
@@ -36,14 +36,14 @@ function ModalAddPago(props) {
       importe: 0,
       vencimiento: '',
       observaciones: '',
-      username: props.username
+      username: username
     })
 
   }
 
   return(
     <>
-      { props.visible && <div className="modal">
+      { visible && <div className="modal">
         <div className="modal-header">
           <p>AGREGAR PAGO</p>
           <p style={{fontSize: '0.8em'}}>Complete los campos del nuevo pago:</p>
@@ -117,13 +117,13 @@ function ModalAddPago(props) {
 
         <div className="modal-botones">
           <button className="boton" onClick={() => {
-            props.setVisible(false)
+            setVisible(false)
             borrarCampos()
           }}>
             Cancelar
           </button>
           <button className="boton" onClick={borrarCampos}>Borrar</button>
-          <button className="boton" onClick={addPago}>Agregar</button>
+          <button className="boton" onClick={add}>Agregar</button>
         </div>
 
       </div> }

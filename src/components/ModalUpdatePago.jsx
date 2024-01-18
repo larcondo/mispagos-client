@@ -2,28 +2,28 @@ import '../css/components/Modals.css'
 import { useState, useEffect } from 'react';
 import pagosService from '../services/pagos';
 
-function ModalUpdatePago( props ) {
+function ModalUpdatePago({ token, infoupd, visible, setVisible, afterUpdate }) {
   const [nuevopago, setNuevopago] = useState({ tipo: '', fecha: '', detalle: '', importe: 0, vencimiento: '', observaciones: '' })
   const [mostrar, setMostrar] = useState(false)
   
   useEffect(()=> {
     setNuevopago({
-      tipo: props.infoupd.tipo ? props.infoupd.tipo : '',
-      fecha: props.infoupd.fecha ? props.infoupd.fecha : '',
-      detalle: props.infoupd.detalle ? props.infoupd.detalle : '',
-      importe: props.infoupd.importe ? props.infoupd.importe : 0,
-      vencimiento: props.infoupd.vencimiento ? props.infoupd.vencimiento : '',
-      observaciones: props.infoupd.observaciones ? props.infoupd.observaciones : '',
+      tipo: infoupd.tipo ? infoupd.tipo : '',
+      fecha: infoupd.fecha ? infoupd.fecha : '',
+      detalle: infoupd.detalle ? infoupd.detalle : '',
+      importe: infoupd.importe ? infoupd.importe : 0,
+      vencimiento: infoupd.vencimiento ? infoupd.vencimiento : '',
+      observaciones: infoupd.observaciones ? infoupd.observaciones : '',
     })
-    setMostrar(props.visible ? props.visible : false)
-  }, [props.visible])
+    setMostrar(visible ? visible : false)
+  }, [visible])
 
-  const updatePago = () => {
-    pagosService.update(props.infoupd._id, nuevopago, props.token)
+  const update = () => {
+    pagosService.update(infoupd._id, nuevopago, token)
     .then( response => {
       if (response.status === 200) {
-        props.setVisible(false)
-        props.refreshFn()
+        setVisible(false)
+        afterUpdate(response.data.updated)
       } else {
         alert('Status distinto a 200')
       }
@@ -36,7 +36,7 @@ function ModalUpdatePago( props ) {
 
   return(
     <>
-      { props.visible && <div className="modal">
+      { visible && <div className="modal">
         <div className="modal-header">
           <p>ACTUALIZAR PAGO</p>
           <p style={{fontSize: '0.8em'}}>Modifique los campos que desea actualizar</p>
@@ -83,8 +83,8 @@ function ModalUpdatePago( props ) {
         </div>
 
         <div className="modal-botones">
-          <button className="boton" onClick={() => props.setVisible(false)}>Cancelar</button>
-          <button className="boton" onClick={() => updatePago()}>Actualizar</button>
+          <button className="boton" onClick={() => setVisible(false)}>Cancelar</button>
+          <button className="boton" onClick={() => update()}>Actualizar</button>
         </div>
       </div> }
     </>
