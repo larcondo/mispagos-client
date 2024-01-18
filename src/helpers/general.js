@@ -36,3 +36,22 @@ export function validarEmail( entryEmail ) {
   
   return resultado
 }
+
+export function monthToText( value ) {
+  const texts = {
+    esp01: 'Enero',
+    esp02: 'Febrero',
+    esp03: 'Marzo',
+    esp04: 'Abril',
+    esp05: 'Mayo',
+    esp06: 'Junio',
+    esp07: 'Julio',
+    esp08: 'Agosto',
+    esp09: 'Septiembre',
+    esp10: 'Octubre',
+    esp11: 'Noviembre',
+    esp12: 'Diciembre',
+  }
+
+  return texts['esp' + value] ? texts['esp' + value] : value;
+}

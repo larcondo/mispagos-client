@@ -1,8 +1,7 @@
 import '../../css/Pagos.css';
 import { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../contexts/userDetails';
-import { numberToCurrency } from '../../helpers/general';
-import { opYear, opMonth } from '../../helpers/constants';
+import { numberToCurrency, monthToText } from '../../helpers/general';
 import FilaPago from '../../components/FilaPago';
 import FilaPagoSmall from '../../components/FilaPagoSmall';
 import ModalAddPago from '../../components/ModalAddPago';
@@ -17,8 +16,7 @@ function Pagos() {
   const [isloading, setIsloading] = useState(true)
   const [pagos, setPagos] = useState([])
   const [tableData, setTableData] = useState([])
-  const [opdetalles, setOpdetalles] = useState([])
-  const [optipos, setOptipos] = useState([])
+  const [options, setOptions] = useState({})
   const [modalAdd, setModalAdd] = useState(false)
   const [modalDel, setModalDel] = useState(false)
   const [modalUpd, setModalUpd] = useState(false)
@@ -57,14 +55,7 @@ function Pagos() {
       setPagos(res.data.resultado)
       verificarFiltros(res.data.resultado, filtro)
       
-      // Se obtienen todas las opciones de 'detalle' distintas
-      const detalles = res.data.resultado.map( pago => pago.detalle)
-      const detallesSet = new Set(detalles)
-      setOpdetalles(Array.from(detallesSet).sort())
-      // Se obtienen todas las opciones de 'tipo' distintas
-      const tipos = res.data.resultado.map( pago => pago.tipo )
-      const tiposSet = new Set(tipos)
-      setOptipos(Array.from(tiposSet).sort())
+      setOptions(res.data.options)
       setIsloading(false)
     })
     .catch(err => {
@@ -132,7 +123,7 @@ function Pagos() {
           <label htmlFor="select-tipo">Tipo:</label>
           <select name="select-tipo" id="select-tipo" onChange={(e) => setFiltro( prev => ({ ...prev, tipo: e.target.value}))}>
             <option value="Todos">Todos</option>
-            { optipos && optipos.map( (op, index) => {
+            { options.tipos && options.tipos.map( (op, index) => {
               return <option value={op} key={index}>{op}</option>
             })}
           </select>
@@ -141,7 +132,7 @@ function Pagos() {
           <label htmlFor="select-detalle">Detalle:</label>
           <select name="select-detalle" id="select-detalle" onChange={(e) => setFiltro( prev => ({ ...prev, detalle: e.target.value}))}>
             <option value="Todos">Todos</option>
-            { opdetalles && opdetalles.map( (op, index) => {
+            { options.detalles && options.detalles.map( (op, index) => {
               return <option value={op} key={index}>{op}</option>
             })}
           </select>
@@ -150,7 +141,7 @@ function Pagos() {
           <label htmlFor="select-anio">Año:</label>
           <select name="select-anio" id="select-anio" onChange={e => setFiltro( prev => ({ ...prev, year: e.target.value}))}>
             <option value="Todos">Todos</option>
-            { opYear && opYear.map( (op, index) => {
+            { options.years && options.years.map( (op, index) => {
               return <option value={op} key={index}>{op}</option>
             })}
           </select>
@@ -159,8 +150,8 @@ function Pagos() {
           <label htmlFor="select-mes">Mes:</label>
           <select name="select-mes" id="select-mes" onChange={e => setFiltro( prev => ({ ...prev, month: e.target.value}))}>
             <option value="Todos">Todos</option>
-            { opMonth && opMonth.map( op => {
-              return <option value={op.value} key={op.id}>{op.text}</option>
+            { options.months && options.months.map( op => {
+              return <option value={op} key={op}>{ monthToText(op) }</option>
             })}
           </select>
         </div>
