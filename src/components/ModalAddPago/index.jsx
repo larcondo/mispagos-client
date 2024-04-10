@@ -1,6 +1,6 @@
-import '../css/components/Modals.css'
+import '../../css/components/Modals.css'
 import { useState } from 'react'
-import pagosService from '../services/pagos'
+import pagosService from '../../services/pagos'
 
 function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
   const [nuevopago, setNuevopago] = useState(
@@ -18,7 +18,7 @@ function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
   const add = () => {
     pagosService.add(nuevopago, token)
     .then( response => {
-      if (response.status === 200) {
+      if (response.status === 201) {
         setVisible(false)
         afterAdd(response.data.added)   // refresco los datos
         borrarCampos()
@@ -131,4 +131,4 @@ function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
   );
 }
 
-export default ModalAddPago;
+export default ModalAddPago

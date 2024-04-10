@@ -1,7 +1,6 @@
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 
-
 function GraficoBar( props ) {
 
   const barOptions = {
@@ -34,7 +33,7 @@ function GraficoBar( props ) {
               return (chH < 300) ? `${size}px` : '12pt';
             }
           },
-          callback: function(value, index, ticks) {
+          callback: function(value) {
             return '$ ' + value;
           }
         }

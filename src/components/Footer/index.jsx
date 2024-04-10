@@ -1,4 +1,4 @@
-import '../css/components/Footer.css'
+import './index.css'
 import {
   FaGithub,
   FaLinkedin,
@@ -24,7 +24,7 @@ const Footer = ({ id }) => {
       </div>
       
       <div className="footer-text">
-        <p>Creado por: <i>larcondo</i> - 2023 - Todos los derechos reservados</p>
+        <p>Creado por: <i>larcondo</i> - 2024 - Todos los derechos reservados</p>
       </div>
 
     </footer>

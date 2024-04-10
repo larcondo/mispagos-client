@@ -1,8 +1,10 @@
 import '../../css/Inicio.css'
-import { numberToCurrency } from '../../helpers/general'
 import { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../contexts/userDetails';
-import pagosService from '../../services/pagos';
+import { UserContext } from '../../contexts/userDetails'
+import pagosService from '../../services/pagos'
+
+import SummaryPanel from '../../components/SummaryPanel'
+import PagoCard from '../../components/PagoCard'
 
 function Inicio() {
   const { userinfo } = useContext(UserContext)
@@ -20,7 +22,7 @@ function Inicio() {
       .catch( err => console.log(err))
   }
 
-  useEffect(initData, [])
+  useEffect(initData)
 
   if (isloading) return <span className='loader-pagos'></span>
 
@@ -44,48 +46,6 @@ function Inicio() {
       </section>
     </div>
   );
-}
-
-const PagoCard = ({ pago }) => {
-  return(
-    <div className='pago-card'>
-      <p className='fecha'>
-        { pago?.fecha ?? '2022-12-25'}
-      </p>
-      <p className='importe'>
-        { numberToCurrency(pago?.importe ?? 999999.99) }
-      </p>
-      <p className='detalle'>
-        { pago?.detalle ?? 'A Very Long Description' }
-      </p>
-    </div>
-  )
-}
-
-const SummaryPanel = ({ values }) => {
-  if (!values) return <div>No se encontraron pagos del mes actual.</div>
-
-  return(
-    <>
-      <h3 style={{marginTop: '1em'}}>Resumen del mes: { values.monthName }</h3>
-      <div className='summary-panel'>
-        <SummaryValue label='Minimo' value={values.min} />
-        <SummaryValue label='Maximo' value={values.max} />
-        <SummaryValue label='Promedio' value={values.average} />
-        <SummaryValue label='Total' value={values.total} />
-      </div>
-    </>
-  )
-}
-
-const SummaryValue = ({ value, label }) => {
-  if (!value) return null
-  return(
-    <div className='summary-value'>
-      <p>{ numberToCurrency(value) }</p>
-      <p>{label}</p>
-    </div>
-  )
 }
 
 export default Inicio

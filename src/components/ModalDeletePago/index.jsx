@@ -1,5 +1,6 @@
-import pagosService from '../services/pagos'
-import { numberToCurrency } from '../helpers/general'
+import '../../css/components/Modals.css'
+import { numberToCurrency } from '../../helpers/general'
+import pagosService from '../../services/pagos'
 
 function ModalDeletePago({ token, infodel, visible, setVisible, afterDelete }) {
 
@@ -60,4 +61,4 @@ function ModalDeletePago({ token, infodel, visible, setVisible, afterDelete }) {
   )
 }
 
-export default ModalDeletePago;
+export default ModalDeletePago

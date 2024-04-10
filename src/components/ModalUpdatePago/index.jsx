@@ -1,10 +1,10 @@
-import '../css/components/Modals.css'
-import { useState, useEffect } from 'react';
-import pagosService from '../services/pagos';
+import '../../css/components/Modals.css'
+import { useState, useEffect } from 'react'
+import pagosService from '../../services/pagos'
 
 function ModalUpdatePago({ token, infoupd, visible, setVisible, afterUpdate }) {
   const [nuevopago, setNuevopago] = useState({ tipo: '', fecha: '', detalle: '', importe: 0, vencimiento: '', observaciones: '' })
-  const [mostrar, setMostrar] = useState(false)
+  // const [mostrar, setMostrar] = useState(false)
   
   useEffect(()=> {
     setNuevopago({
@@ -15,7 +15,7 @@ function ModalUpdatePago({ token, infoupd, visible, setVisible, afterUpdate }) {
       vencimiento: infoupd.vencimiento ? infoupd.vencimiento : '',
       observaciones: infoupd.observaciones ? infoupd.observaciones : '',
     })
-    setMostrar(visible ? visible : false)
+    // setMostrar(visible ? visible : false)
   }, [visible])
 
   const update = () => {
@@ -91,4 +91,4 @@ function ModalUpdatePago({ token, infoupd, visible, setVisible, afterUpdate }) {
   );
 }
 
-export default ModalUpdatePago;
+export default ModalUpdatePago

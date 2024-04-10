@@ -1,6 +1,6 @@
-import '../css/components/FilaPago.css'
-import { numberToCurrency } from '../helpers/general'
-import { MdDelete, MdEditSquare } from 'react-icons/md';
+import './index.css'
+import { numberToCurrency } from '../../helpers/general';
+import { MdDelete, MdEditSquare } from 'react-icons/md'
 
 function FilaPago({ pago, showModalDel, showModalUpd }) {
   const iconStyle = { position: 'relative', top: '2px', fontSize: '1em' }
