@@ -2,6 +2,10 @@ import '../../css/components/Modals.css'
 import { useState } from 'react'
 import pagosService from '../../services/pagos'
 
+import ModalHeader from '../ModalHeader'
+import ModalInput from '../ModalInput'
+import ModalSelect from '../ModalSelect'
+
 function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
   const [nuevopago, setNuevopago] = useState(
     {
@@ -28,7 +32,6 @@ function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
   }
 
   const borrarCampos = () => {
-
     setNuevopago({
       tipo: '',
       fecha: '',
@@ -38,82 +41,46 @@ function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
       observaciones: '',
       username: username
     })
-
   }
+
+  const tipoChange = (e) => setNuevopago( prev => ({...prev, tipo: e.target.value}) )
+  const fechaChange = (e) => setNuevopago( prev => ({...prev, fecha: e.target.value}) )
+  const detalleChange = (e) => setNuevopago( prev => ({...prev, detalle: e.target.value}) )
+  const importeChange = (e) => setNuevopago( prev => ({...prev, importe: parseFloat(e.target.value)}) )
+  const vencimientoChange = (e) => setNuevopago( prev => ({...prev, vencimiento: e.target.value}) )
+  const observacionesChange = (e) => setNuevopago( prev => ({...prev, observaciones: e.target.value}) )
 
   return(
     <>
       { visible && <div className="modal">
-        <div className="modal-header">
-          <p>AGREGAR PAGO</p>
-          <p style={{fontSize: '0.8em'}}>Complete los campos del nuevo pago:</p>
-        </div>
+        <ModalHeader
+          title='AGREGAR PAGO'
+          subtitle='Complete los campos del nuevo pago:'
+        />
+        
+        <ModalSelect label='Tipo:' name='pago-tipo'
+          value={nuevopago.tipo} onChange={tipoChange}
+        />
 
-        <div className="recuadro-input">
-          <label htmlFor="pago-tipo">Tipo:</label>
-          <select name="pago-tipo" id="pago-tipo" className="modal-input" 
-            value={nuevopago.tipo} 
-            onChange={ e => setNuevopago( prev => ({...prev, tipo: e.target.value}) )} >
-            <option value=""></option>
-            <option value="pago">Pago</option>
-            <option value="divisas">Divisas</option>
-          </select>
-        </div>
+        <ModalInput type='date' label='Fecha:' name='pago-fecha'
+          value={nuevopago.fecha} onChange={fechaChange}
+        />
 
-        <div className="recuadro-input">
-          <label htmlFor="pago-fecha">Fecha:</label>
-          <input type="date" 
-            name="pago-fecha" 
-            id="pago-fecha" 
-            className="modal-input" 
-            value={nuevopago.fecha}
-            onChange={ e => setNuevopago( prev => ({...prev, fecha: e.target.value}) )} />
-        </div>
+        <ModalInput type='text' label='Detalle:' name='pago-detalle'
+          value={nuevopago.detalle} onChange={detalleChange}
+        />
 
-        <div className="recuadro-input">
-          <label htmlFor="pago-detalle">Detalle:</label>
-          <input type="text" 
-            name="pago-detalle" 
-            id="pago-detalle" 
-            className="modal-input"
-            value={nuevopago.detalle}
-            onChange={ e => setNuevopago( prev => ({...prev, detalle: e.target.value}) )} 
-          />
-        </div>
+        <ModalInput type='number' label='Importe:' name='pago-importe'
+          value={nuevopago.importe} onChange={importeChange}
+        />
 
-        <div className="recuadro-input">
-          <label htmlFor="pago-importe">Importe:</label>
-          <input type="number" 
-            name="pago-importe" 
-            id="pago-importe" 
-            className="modal-input"
-            value={nuevopago.importe}
-            step="0.01"
-            onChange={ e => setNuevopago( prev => ({...prev, importe: parseFloat(e.target.value)}) )} 
-          />
-        </div>
+        <ModalInput type='date' label='Vencimiento:' name='pago-vencimiento'
+          value={nuevopago.vencimiento} onChange={vencimientoChange}
+        />
 
-        <div className="recuadro-input">
-          <label htmlFor="pago-vencimiento">Vencimiento:</label>
-          <input type="date" 
-            name="pago-vencimiento" 
-            id="pago-vencimiento" 
-            className="modal-input"
-            value={nuevopago.vencimiento}
-            onChange={ e => setNuevopago( prev => ({...prev, vencimiento: e.target.value}) )}
-          />
-        </div>
-
-        <div className="recuadro-input">
-          <label htmlFor="pago-observaciones">Observaciones:</label>
-          <input type="text" 
-            name="pago-observaciones" 
-            id="pago-observaciones" 
-            className="modal-input" 
-            value={nuevopago.observaciones}
-            onChange={ e => setNuevopago( prev => ({...prev, observaciones: e.target.value}) )}
-          />
-        </div>
+        <ModalInput type='text' label='Observaciones:' name='pago-observaciones'
+          value={nuevopago.observaciones} onChange={observacionesChange}
+        />
 
         <div className="modal-botones">
           <button className="boton" onClick={() => {

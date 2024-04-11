@@ -2,6 +2,8 @@ import '../../css/components/Modals.css'
 import { numberToCurrency } from '../../helpers/general'
 import pagosService from '../../services/pagos'
 
+import ModalHeader from '../ModalHeader'
+
 function ModalDeletePago({ token, infodel, visible, setVisible, afterDelete }) {
 
   const remove = () => {
@@ -22,9 +24,9 @@ function ModalDeletePago({ token, infodel, visible, setVisible, afterDelete }) {
   return(
     <>
       { visible && <div className="modal">
-        <div className="modal-header">
-          <p>¿Desea eliminar el siguiente pago?</p>
-        </div>
+        <ModalHeader 
+          title='¿Desea eliminar el siguiente pago?'
+        />
         <table className="modal-table">
           <tbody>
             <tr>
