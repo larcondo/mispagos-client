@@ -3,6 +3,9 @@ import { monthToText } from '../../helpers/general';
 import { filterChange } from '../../reducers/filtrosReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
+import FiltroSelect from './FiltroSelect';
+import FiltroInput from './FiltroInput';
+
 const Filtros = ({ options, filtrovis }) => {
   const dispatch = useDispatch();
   const filtro = useSelector(state => state.filter);
@@ -37,33 +40,5 @@ const Filtros = ({ options, filtrovis }) => {
     </div>
   );
 };
-
-const FiltroSelect = ({ name, label, values, onChange, modifier = null }) => {
-  if(!values) return null;
-
-  return(
-    <div className='filtro'>
-      <label htmlFor={name}>{ label }</label>
-      <select name={name} id={name} onChange={onChange}>
-        <option value='Todos'>Todos</option>
-        { values.map( (op, index) => {
-          return <option value={op} key={index}>
-            { modifier ? modifier(op) : op }
-          </option>;
-        })}
-      </select>
-    </div>
-  );
-};
-
-const FiltroInput = ({ name, label, onChange }) => {
-  return(
-    <div className='filtro'>
-      <label htmlFor={name}>{ label }</label>
-      <input type='text' name={name} id={name} onChange={onChange} />
-    </div>
-  );
-};
-
 
 export default Filtros;
