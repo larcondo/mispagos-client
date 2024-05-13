@@ -50,6 +50,36 @@
   margin: 2em 0 1em 0;
 }
 
+.modal-values {
+  display: flex;
+  width: 84%;
+  flex-flow: row wrap;
+  align-items: center;
+  /* background-color: blue; */
+}
+
+.modal-values span:nth-child(odd) {
+  flex: 1 0 30%;
+  text-align: center;
+  padding: 0.5em 0;
+  box-sizing: border-box;
+  color: rgba(0,0,0,0.75);
+}
+
+.modal-values span:nth-child(even) {
+  flex: 1 0 70%;
+  text-align: center;
+  padding: 0.5em 0;
+  box-sizing: border-box;
+}
+
+.modal-values .config-value {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 4px 10px;
+  text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
   .modal {
     width: 350px;
