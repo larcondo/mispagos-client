@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import GraficoBar from '../../components/GraficoBar';
 import GraficoPie from '../../components/GraficoPie';
-import { Each } from '../../Each';
-import { monthToText } from '../../helpers/general';
+import ChartBarButtons from '../../components/ChartBarButtons';
+import ChartPieOptions from '../../components/ChartPieOptions';
 
 function Graficas() {
   const [isloading, setIsloading] = useState(true)
@@ -185,57 +185,6 @@ function Graficas() {
       </> }
     </>
   );
-}
-
-const ChartBarButtons = ({ options, activeOption, onClick }) => {
-  if (!options) return null
-
-  return(
-    <div className="chart-bar-botones">
-      <Each of={options} render={(item, index) => (
-          <button key={index} onClick={() => onClick(item)}
-            className={`chart-bar-boton ${ activeOption === item ? 'active' : '' }`}
-          >
-            { item }
-          </button>
-        )}
-      />
-    </div>
-  )
-}
-
-const ChartPieOptions = ({ year, month, onChangeYear, onChangeMonth, yearOptions, monthOptions }) => {
-  if (!yearOptions) return null
-
-  return(
-    <div className="chart-pie-options">
-      <ChartPieSelect 
-        name='pie-year' label='Año:'
-        value={year} onChange={onChangeYear}
-        options={yearOptions}
-      />
-      <ChartPieSelect 
-        name='pie-month' label='Mes:'
-        value={month} onChange={onChangeMonth}
-        options={monthOptions}
-        modifier={monthToText}
-      />
-    </div>
-  )
-}
-
-const ChartPieSelect = ({ name, label, value, onChange, options, modifier }) => {
-  return(
-    <>
-      <label htmlFor={name}><span>{ label }</span>
-        <select name={name} id={name} value={value} onChange={(e) => { onChange(e.target.value) }}>
-          <Each of={options} render={(item, index) => (
-            <option value={item} key={index}>{ modifier ? modifier(item) : item }</option>
-          )} />
-        </select>
-      </label>
-    </>
-  )
 }
 
 export default Graficas

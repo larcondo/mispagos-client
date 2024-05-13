@@ -1,0 +1,43 @@
+.chart-pie-options {
+  grid-area: span 1 / span 3;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1em;
+  /* margin: 0.5em auto 0 auto; */
+  box-sizing: border-box;
+  padding: 1em;
+  /* background-color: lightgreen; */
+}
+
+#pie-year {
+  padding: 4px 8px;
+  border-radius: 10px;
+  width: 16ch;
+}
+#pie-year:hover {
+  cursor: pointer;
+}
+
+#pie-month {
+  padding: 4px 8px;
+  border-radius: 10px;
+  width: 16ch;
+}
+#pie-month:hover {
+  cursor: pointer;
+}
+
+.chart-pie-options > label > span {
+  margin-right: 1ch;
+}
+
+
+@media screen and ( max-width: 600px ) {
+  .chart-pie-options {
+    grid-area: span 3 / span 1;
+    flex-flow: row wrap;
+    align-self: center;
+  }
+}

@@ -1,0 +1,56 @@
+.chart-bar-botones {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 1em;
+  row-gap: 0.7em;
+  column-gap: 1em;
+}
+
+.chart-bar-botones::-webkit-scrollbar {
+  display: none;
+}
+
+.chart-bar-boton {
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(240, 38%, 70%);
+  color: hsl(240, 38%, 40%);
+}
+
+.chart-bar-boton:hover {
+  cursor: pointer;
+  color: hsl(240, 38%, 80%);
+  background-color: hsl(240, 38%, 55%);
+}
+
+.chart-bar-boton:active {
+  background-color: hsl(240, 38%, 70%);
+}
+
+.chart-bar-boton.active {
+  background-color: hsl(240, 38%, 40%);
+  color: #f5f5f5;
+}
+
+@media screen and ( max-width: 600px ) {
+  
+  .chart-bar-botones {
+    max-width: 100%;
+    padding: 1em 0;
+    column-gap: 0.7em;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  
+  .chart-bar-botones::-webkit-scrollbar {
+    display: none;
+  }
+  .chart-bar-boton {
+    white-space: nowrap;
+  }
+}
