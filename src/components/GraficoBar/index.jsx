@@ -1,7 +1,8 @@
-import Chart from 'chart.js/auto';
+// import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 
 function GraficoBar( props ) {
+  if (!props.data) return null
 
   const barOptions = {
     scales: {
@@ -58,7 +59,9 @@ function GraficoBar( props ) {
   }
 
   return(
-    <Bar datasetIdKey="importe" data={props.data} options={barOptions} />
+    <div className="chart-bar-container">
+      <Bar datasetIdKey="importe" data={props.data} options={barOptions} />
+    </div>
   );
 }
 

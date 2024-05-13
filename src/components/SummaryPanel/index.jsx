@@ -2,7 +2,7 @@ import './index.css'
 import SummaryValue from './SummaryValue'
 
 const SummaryPanel = ({ values }) => {
-  if (!values) return <div>No se encontraron pagos del mes actual.</div>
+  if (!values) return <div className='summary-not-found'>No se encontraron pagos del mes actual.</div>
 
   return(
     <>

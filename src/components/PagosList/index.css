@@ -1,0 +1,16 @@
+.contenedor-small-size {
+  display: none;
+}
+
+/* Media queries */
+@media screen and ( max-width: 600px ) {
+  .contenedor-small-size {
+    display: block;
+  }
+}
+
+@media screen and ( min-width: 600px ) {
+  .contenedor-small-size {
+    display: none;
+  }
+}

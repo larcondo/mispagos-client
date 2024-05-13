@@ -9,25 +9,8 @@
   color: var(--color-font-dark);
 }
 
-.ultimos-pagos {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  margin: 1em auto;
-  row-gap: 1em;
-}
-
 @media screen and (min-width: 600px) {
   .contenedor-inicio {
     padding: 1em;
-  }
-  
-  .ultimos-pagos {
-    grid-template-columns: repeat(3, 33.33%);
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .ultimos-pagos {
-    grid-template-columns: repeat(4, 25%);
   }
 }

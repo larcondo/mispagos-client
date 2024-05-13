@@ -6,52 +6,34 @@ const getSummary = (token) => {
   return axios.get(`${baseUrl}/pagos/summary`, { headers: { 'Authorization': `Bearer ${token}` }})
 }
 
-const getAll = (token) => {
-  return axios.get(
-    `${baseUrl}/pagos`,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      }
-    }
-  )
+const getAll = async (token) => {
+  const getAllUrl = `${baseUrl}/pagos`
+  const authHeader = { 'Authorization': `Bearer: ${token}` }
+  const response = await axios.get(getAllUrl,{ headers: authHeader })
+
+  return response.data
 }
 
-const add = (pago, token) => {
-  return axios.post(
-    `${baseUrl}/pagos`,
-    pago,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      }
-    },
-  )
+const add = async (pago, token) => {
+  const addUrl = `${baseUrl}/pagos`
+  const authHeader = { 'Authorization': `Bearer: ${token}`, 'Content-Type': 'application/json', }
+  const response = await axios.post(addUrl, pago, { headers: authHeader })
+
+  return response.data.added
 }
 
-const remove = (id, token) => {
-  return axios.delete(
-    `${baseUrl}/pagos/${id}`,
-    {
-      headers: {
-        'Authorization': `Bearer: ${token}`,
-      }
-    }
-  )
+const remove = async (id, token) => {
+  const removeUrl = `${baseUrl}/pagos/${id}`
+  const authHeader = { 'Authorization': `Bearer: ${token}` }
+  const response = await axios.delete(removeUrl, { headers: authHeader })
+  return response.data.deleted
 }
 
-const update = (id, newPago, token) => {
-  return axios.put(
-    `${baseUrl}/pagos/${id}`,
-    newPago,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    },
-  )
+const update = async (id, newPago, token) => {
+  const updateUrl = `${baseUrl}/pagos/${id}`
+  const authHeader = { 'Authorization': `Bearer: ${token}`, 'Content-Type': 'application/json', }
+  const response = await axios.put(updateUrl, newPago, { headers: authHeader })
+  return response.data.updated
 }
 
 

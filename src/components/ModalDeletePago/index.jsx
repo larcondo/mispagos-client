@@ -1,32 +1,25 @@
 import '../../css/components/Modals.css'
 import { numberToCurrency } from '../../helpers/general'
-import pagosService from '../../services/pagos'
+import { useDispatch } from 'react-redux'
+import { removePago } from '../../reducers/pagosReducer'
 
 import ModalHeader from '../ModalHeader'
 
-function ModalDeletePago({ token, infodel, visible, setVisible, afterDelete }) {
+function ModalDeletePago({ token, infodel, visible, setVisible }) {
+  const dispatch = useDispatch()
 
   const remove = () => {
-    pagosService.remove(infodel._id, token)
-    .then( response => {
-      if (response.status === 200) {
-        setVisible(false)
-        afterDelete(response.data.deleted)   // refresco los pagos
-      }
-
-      if (response.status === 203) {
-        console.log('No content')
-      }
-    })
-    .catch( err => console.log(err))
+    const id = infodel._id
+    dispatch(removePago(id, token))
+    setVisible(false)
   }
 
   return(
     <>
       { visible && <div className="modal">
-        <ModalHeader 
-          title='¿Desea eliminar el siguiente pago?'
-        />
+
+        <ModalHeader title='¿Desea eliminar el siguiente pago?' />
+        
         <table className="modal-table">
           <tbody>
             <tr>

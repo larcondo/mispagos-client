@@ -1,54 +1,42 @@
 import '../../css/components/Modals.css'
 import { useState } from 'react'
-import pagosService from '../../services/pagos'
+import { useDispatch } from 'react-redux'
+import { createPago } from '../../reducers/pagosReducer'
 
 import ModalHeader from '../ModalHeader'
 import ModalInput from '../ModalInput'
 import ModalSelect from '../ModalSelect'
 
-function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
-  const [nuevopago, setNuevopago] = useState(
-    {
-      tipo: '',
-      fecha: '',
-      detalle: '',
-      importe: 0,
-      vencimiento: '',
-      observaciones: '',
-      username: username
-    }
-  )
+function ModalAddPago({ userinfo, visible, setVisible }) {
+  const initialDate = new Date().toISOString().substring(0,10)
+  const dispatch = useDispatch()
+  const [tipo, setTipo] = useState('')
+  const [fecha, setFecha] = useState(initialDate)
+  const [detalle, setDetalle] = useState('')
+  const [importe, setImporte] = useState(0)
+  const [vencimiento, setVencimiento] = useState(initialDate)
+  const [observaciones, setObservaciones] = useState('')
 
   const add = () => {
-    pagosService.add(nuevopago, token)
-    .then( response => {
-      if (response.status === 201) {
-        setVisible(false)
-        afterAdd(response.data.added)   // refresco los datos
-        borrarCampos()
-      }
-    })
-    .catch( err => console.log(err))
+    const newPago = {
+      tipo, fecha, detalle, importe,
+      vencimiento, observaciones, username: userinfo.name
+    }
+
+    dispatch(createPago(newPago, userinfo.token))
+
+    setVisible(false)
+    borrarCampos()
   }
 
   const borrarCampos = () => {
-    setNuevopago({
-      tipo: '',
-      fecha: '',
-      detalle: '',
-      importe: 0,
-      vencimiento: '',
-      observaciones: '',
-      username: username
-    })
+    setTipo('')
+    setFecha(initialDate)
+    setDetalle('')
+    setImporte(0)
+    setVencimiento(initialDate)
+    setObservaciones('')
   }
-
-  const tipoChange = (e) => setNuevopago( prev => ({...prev, tipo: e.target.value}) )
-  const fechaChange = (e) => setNuevopago( prev => ({...prev, fecha: e.target.value}) )
-  const detalleChange = (e) => setNuevopago( prev => ({...prev, detalle: e.target.value}) )
-  const importeChange = (e) => setNuevopago( prev => ({...prev, importe: parseFloat(e.target.value)}) )
-  const vencimientoChange = (e) => setNuevopago( prev => ({...prev, vencimiento: e.target.value}) )
-  const observacionesChange = (e) => setNuevopago( prev => ({...prev, observaciones: e.target.value}) )
 
   return(
     <>
@@ -59,27 +47,27 @@ function ModalAddPago({ username, token, visible, setVisible, afterAdd }) {
         />
         
         <ModalSelect label='Tipo:' name='pago-tipo'
-          value={nuevopago.tipo} onChange={tipoChange}
+          value={tipo} onChange={e => setTipo(e.target.value)}
         />
 
         <ModalInput type='date' label='Fecha:' name='pago-fecha'
-          value={nuevopago.fecha} onChange={fechaChange}
+          value={fecha} onChange={e => setFecha(e.target.value)}
         />
 
         <ModalInput type='text' label='Detalle:' name='pago-detalle'
-          value={nuevopago.detalle} onChange={detalleChange}
+          value={detalle} onChange={e => setDetalle(e.target.value)}
         />
 
         <ModalInput type='number' label='Importe:' name='pago-importe'
-          value={nuevopago.importe} onChange={importeChange}
+          value={importe} onChange={e => setImporte(parseFloat(e.target.value))}
         />
 
         <ModalInput type='date' label='Vencimiento:' name='pago-vencimiento'
-          value={nuevopago.vencimiento} onChange={vencimientoChange}
+          value={vencimiento} onChange={e => setVencimiento(e.target.value)}
         />
 
         <ModalInput type='text' label='Observaciones:' name='pago-observaciones'
-          value={nuevopago.observaciones} onChange={observacionesChange}
+          value={observaciones} onChange={e => setObservaciones(e.target.value)}
         />
 
         <div className="modal-botones">

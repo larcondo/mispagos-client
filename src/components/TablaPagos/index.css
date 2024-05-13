@@ -1,0 +1,47 @@
+#tabla-pagos {
+  border-collapse: collapse;
+  /* max-width: 90%; */
+  height: fit-content;
+  margin: 10px auto;
+  font-size: 0.85rem;
+}
+
+#tabla-pagos tr {
+  height: 20px;
+}
+
+#tabla-pagos th {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+#tabla-pagos th, 
+#tabla-pagos td {
+  /* padding: 4px 16px; */
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#tabla-pagos th {
+  background-color: #454599;
+  border: 1px solid hsl(240, 38%, 44%);
+  color: #eee;
+}
+
+/* Columna 'Observaciones' */
+#tabla-pagos th:nth-child(6) {
+  text-align: left;
+}
+
+#tabla-pagos tr:nth-child(odd) {
+  background-color: #ddd;
+}
+#tabla-pagos tr:nth-child(even) {
+  background-color: #eee;
+}
+#tabla-pagos tr:hover {
+  background-color: #ccc;
+  /* cursor: pointer; */
+}

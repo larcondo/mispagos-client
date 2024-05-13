@@ -1,48 +1,45 @@
 import '../../css/Inicio.css'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../contexts/userDetails'
-import pagosService from '../../services/pagos'
+import { useDispatch, useSelector } from 'react-redux'
+import { initializePagos } from '../../reducers/pagosReducer'
+import { summaryChange } from '../../reducers/summaryReducer'
 
 import SummaryPanel from '../../components/SummaryPanel'
-import PagoCard from '../../components/PagoCard'
+import SummaryLastEight from '../../components/SummaryLastEight'
 
 function Inicio() {
   const { userinfo } = useContext(UserContext)
+  const dispatch = useDispatch()
+  const summaryData = useSelector(state => state.summary)
   const [isloading, setIsloading] = useState(true)
-  const [data, setData] = useState(null)
   
   const initData = () => {
-    pagosService
-      .getSummary(userinfo.token)
-      .then( res => {
-        setData(res.data)
-        setIsloading(false)
-        // console.log(res.data)
-      })
-      .catch( err => console.log(err))
+    const { token } = userinfo
+    
+    dispatch(summaryChange(token))
+    dispatch(initializePagos(token))
+
+    setIsloading(false)
   }
 
-  useEffect(initData)
+  useEffect(initData, [])
 
   if (isloading) return <span className='loader-pagos'></span>
+
+  if(!summaryData) return null
 
   return(
     <div className='contenedor-inicio'>
       <h1>Hola, { userinfo.firstName }!</h1>
 
       <section>
-        <SummaryPanel values={data.values} />
+        <SummaryPanel values={summaryData.values} />
       </section>
 
       <section style={{ margin: '1em 0'}}>
         <h3 style={{margin: '1em 0'}}>Últimos pagos realizados</h3>
-        {
-          data.lastEight.length < 1
-            ? <p>No se encontraron pagos.</p>
-            : <div className='ultimos-pagos'>
-                { data.lastEight.map( p => <PagoCard pago={p} key={p._id} />)}
-              </div>
-        }
+        <SummaryLastEight pagos={summaryData.lastEight} />
       </section>
     </div>
   );

@@ -1,0 +1,86 @@
+#contenedor-acciones {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1em auto;
+}
+
+#pagos-info {
+  width: 68%;
+  padding: 0.5em;
+  display: flex;
+  gap: 2em;
+}
+
+#pagos-entradas,
+#pagos-total {
+  color: hsl(240, 38%, 64%);
+  font-size: 0.75em;
+}
+
+#pagos-entradas-valor,
+#pagos-total-valor {
+  color: hsl(240, 38%, 34%);
+  font-size: 1em;
+}
+
+#pagos-botones {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#boton-add {
+  background-color: rgb(84, 144, 84);
+  color: white;
+  border: 1px solid;
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+  font-size: 1.5rem;
+}
+
+#boton-add:hover {
+  cursor: pointer;
+  background-color: hsl(120, 26%, 35%);
+}
+
+#boton-add:active {
+  background-color: hsl(120, 26%, 55%);
+}
+
+.boton-filtro {
+  width: 36px;
+  height: 36px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 6px;
+  background-color: #454599;
+  color: #eee;
+}
+
+.boton-filtro:hover {
+  cursor: pointer;
+  background-color: hsl(240, 38%, 34%);
+}
+
+.boton-filtro:active {
+  background-color: hsl(240, 38%, 54%);
+}
+
+/* Media queries */
+@media screen and ( min-width: 1200px ) {
+  #contenedor-acciones {
+    width: 90%;
+  }
+
+  #pagos-entradas, #pagos-total {
+    font-size: 0.9em;
+  }
+
+  #pagos-entradas-valor, #pagos-total-valor {
+    font-size: 1.5em;
+  }
+}

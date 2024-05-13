@@ -9,6 +9,9 @@ import {
 } from 'react-icons/md'
 import MisPagosLogo from '../assets/recibo.png'
 
+import { useDispatch } from 'react-redux'
+import { cleanState } from '../reducers/pagosReducer'
+
 // const INTERVALO_REFRESH = 1000 * 60 * 14
 const INTERVALO_REFRESH = 1000 * 60 * 15
 
@@ -24,6 +27,7 @@ window.onclick = function(event) {
 
 function Home() {
   const { userinfo, setUserinfo } = useContext(UserContext)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const styleUserIcon = {
     position: 'relative', top: '3px', fontSize: '1.2em'
@@ -63,6 +67,9 @@ function Home() {
   }, [])
 
   const logout = () => {
+    dispatch(cleanState())
+    dispatch({ type: 'CLEAN_FILTER', payload: null })
+
     userService.logout(userinfo.name)
     .then(res => {
       if(res.status === 200) {

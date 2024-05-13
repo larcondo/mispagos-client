@@ -1,24 +1,20 @@
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 // ChartJS.register(ArcElement, Tooltip, Legend)
 import '../../css/Graficas.css'
-import { useContext, useState, useEffect } from 'react'
-import { UserContext } from '../../contexts/userDetails';
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux';
 import GraficoBar from '../../components/GraficoBar';
 import GraficoPie from '../../components/GraficoPie';
-import { opMonth } from '../../helpers/constants';
-import { getDiferentesAnios, getDiferentesDetalles } from '../../helpers/graficos';
-
-import pagosService from '../../services/pagos';
+import { Each } from '../../Each';
+import { monthToText } from '../../helpers/general';
 
 function Graficas() {
-  const { userinfo } = useContext(UserContext)
   const [isloading, setIsloading] = useState(true)
-  const [pagos, setPagos] = useState([])
+  const pagos = useSelector(state => state.pagos.resultado)
+  const optionsRedux = useSelector(state => state.pagos.options)
   const [barData, setBarData] = useState(null)
   const [pieData, setPieData] = useState(null)
   
-  const [opdetalles, setOpdetalles] = useState([])
-  const [opyear, setOpyear] = useState([])
   const [pieYear, setPieYear] = useState('2023')
   const [pieMonth, setPieMonth] = useState('01')
   const [activeBar, setActiveBar] = useState('')
@@ -31,28 +27,17 @@ function Graficas() {
   const getPagos = () => {
     setIsloading(true)
 
-    pagosService.getAll(userinfo.token)
-    .then(res => {
-      setPagos(res.data.resultado)
-
-      const pagosTipoPago = res.data.resultado.filter( pago => pago.tipo === 'pago')
-      setOpyear( getDiferentesAnios(pagosTipoPago) )
-      setOpdetalles( getDiferentesDetalles(pagosTipoPago) )
-      
+    try {
+      const pagosTipoPago = pagos.filter( pago => pago.tipo === 'pago')
       initBar(pagosTipoPago)
       initPie(pagosTipoPago)
-      
       setDataError({ error: false, message: null })
+    } catch(e) {
+      console.log(e)
+      setDataError({ error: true, message: e.message })
+    }
 
-    })
-    .catch(err => {
-      console.log(err)
-      setDataError({ error: true, message: err.response.statusText })
-    })
-    .finally(() => {
-      // setTimeout(() => setIsloading(false), 2000)
-      setIsloading(false)
-    })
+    setIsloading(false)
   }
 
   const initBar = ( initialData ) => {
@@ -79,7 +64,6 @@ function Graficas() {
   const refreshBar = ( detalle ) => {
     setActiveBar(detalle)
     const data = pagos.filter( pago => pago.detalle === detalle )
-
     const dataSorted = data.sort((a, b) => new Date(a.fecha) - new Date(b.fecha))
     const ex = dataSorted.map( pago => pago.fecha )
     const ey = dataSorted.map( pago => pago.importe )
@@ -176,47 +160,82 @@ function Graficas() {
       </div>
 
       <div style={{display: dataError.error ? 'none': 'block'}}>
+        <section>
+          <h2 className="chart-title2">Distribución de Pagos por Detalle</h2>
+          <ChartBarButtons options={optionsRedux.detalles} activeOption={activeBar} onClick={refreshBar} />
+          <GraficoBar data={barData} />
+        </section>
         
-        <h2 className="chart-title2">Distribución de Pagos por Detalle</h2>
-        
-        <div className="chart-bar-botones">
-          { opdetalles && opdetalles.map( (opcion, index) => {
-            return <button key={index} className={`chart-bar-boton ${ activeBar === opcion ? 'active' : '' }`} onClick={() => refreshBar(opcion)}>{ opcion }</button>
-          })}
-        </div>
-        
-        <div className="chart-bar-container">
-          { barData && <GraficoBar data={barData} /> }
-        </div>
-        
-        <h2 className="chart-title2">Distribución de Pagos por mes [%]</h2>
-
-        <div className="chart-pie-container">
-          <div className="chart-pie-options">
-            <label htmlFor="pie-year"><span>Año:</span>
-              <select name="pie-year" id="pie-year" value={pieYear} onChange={(e) => { changeYear(e.target.value)}}>
-                { opyear && opyear.map( (op, index) => {
-                  return <option value={op} key={index}>{ op }</option>
-                })}
-              </select>
-            </label>
-            <label htmlFor="pie-month"><span>Mes:</span>
-              <select name="pie-month" id="pie-month" value={pieMonth} onChange={(e) => { changeMonth(e.target.value) }}>
-                { opMonth && opMonth.map( op => {
-                  return <option value={op.value} key={op.id}>{ op.text }</option>
-                })}
-              </select>
-            </label>
+        <section>
+          <h2 className="chart-title2">Distribución de Pagos por mes [%]</h2>
+          <div className="chart-pie-container">
+            <ChartPieOptions
+              year={pieYear}
+              yearOptions={optionsRedux.years}
+              month={pieMonth}
+              monthOptions={optionsRedux.months}
+              onChangeYear={changeYear}
+              onChangeMonth={changeMonth}
+            />
+            <GraficoPie data={pieData} />
           </div>
-          
-          { pieData && <GraficoPie data={pieData} /> }
-        
-        </div>
+        </section>
 
       </div>
       </> }
     </>
   );
+}
+
+const ChartBarButtons = ({ options, activeOption, onClick }) => {
+  if (!options) return null
+
+  return(
+    <div className="chart-bar-botones">
+      <Each of={options} render={(item, index) => (
+          <button key={index} onClick={() => onClick(item)}
+            className={`chart-bar-boton ${ activeOption === item ? 'active' : '' }`}
+          >
+            { item }
+          </button>
+        )}
+      />
+    </div>
+  )
+}
+
+const ChartPieOptions = ({ year, month, onChangeYear, onChangeMonth, yearOptions, monthOptions }) => {
+  if (!yearOptions) return null
+
+  return(
+    <div className="chart-pie-options">
+      <ChartPieSelect 
+        name='pie-year' label='Año:'
+        value={year} onChange={onChangeYear}
+        options={yearOptions}
+      />
+      <ChartPieSelect 
+        name='pie-month' label='Mes:'
+        value={month} onChange={onChangeMonth}
+        options={monthOptions}
+        modifier={monthToText}
+      />
+    </div>
+  )
+}
+
+const ChartPieSelect = ({ name, label, value, onChange, options, modifier }) => {
+  return(
+    <>
+      <label htmlFor={name}><span>{ label }</span>
+        <select name={name} id={name} value={value} onChange={(e) => { onChange(e.target.value) }}>
+          <Each of={options} render={(item, index) => (
+            <option value={item} key={index}>{ modifier ? modifier(item) : item }</option>
+          )} />
+        </select>
+      </label>
+    </>
+  )
 }
 
 export default Graficas

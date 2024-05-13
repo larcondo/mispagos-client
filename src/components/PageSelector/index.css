@@ -1,0 +1,32 @@
+#contenedor-paginas {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.boton-paginas {
+  padding: 5px 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: #454599;
+  /* background-color: #ddd; */
+  color: #e3e3e3;
+}
+.boton-paginas:hover {
+  cursor: pointer;
+  background-color: #363678;
+}
+.boton-paginas:disabled {
+  background-color: hsl(240, 38%, 74%);
+  border: none;
+  color: hsl(240, 38%, 84%);
+}
+
+.indicador-paginas {
+  background-color: white;
+  padding: 4px 1em;
+  border-radius: 10px;
+  /* outline: 1px solid #61a7bf; */
+  color: #363678;
+  user-select: none;
+}

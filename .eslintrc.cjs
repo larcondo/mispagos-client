@@ -11,6 +11,8 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react/prop-types': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 0,
     'react-refresh/only-export-components': 'warn',
   },
 }

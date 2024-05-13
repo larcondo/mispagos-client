@@ -22,7 +22,7 @@ function FilaPago({ pago, showModalDel, showModalUpd }) {
         </button>
         <button className="boton-tabla boton-update" onClick={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          showModalUpd(pago)
+          showModalUpd(pago._id)
         }}>
           <MdEditSquare style={iconStyle} />
         </button>

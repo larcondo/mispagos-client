@@ -3,6 +3,8 @@ import { Pie } from 'react-chartjs-2';
 
 function GraficoPie( props ) {
   
+  if (!props.data) return null
+
   const pieOptions = {
     plugins: {
       title: { 
