@@ -1,4 +1,4 @@
-import './index.css'
+import './index.css';
 
 const ModalSelect = ({ name, label, value, onChange }) => {
   return(
@@ -16,7 +16,7 @@ const ModalSelect = ({ name, label, value, onChange }) => {
         <option value='divisas'>Divisas</option>
       </select>
     </div>
-  )
-}
+  );
+};
 
-export default ModalSelect
+export default ModalSelect;

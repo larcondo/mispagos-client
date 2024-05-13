@@ -1,25 +1,25 @@
-import pagosService from '../services/pagos'
-const initialState = {}
+import pagosService from '../services/pagos';
+const initialState = {};
 
 const summaryReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_SUMMARY':
-      return action.payload
-    case 'CLEAN_SUMMARY':
-      return initialState
-    default:
-      return state
+  case 'SET_SUMMARY':
+    return action.payload;
+  case 'CLEAN_SUMMARY':
+    return initialState;
+  default:
+    return state;
   }
-}
+};
 
 export const summaryChange = token => {
   return async dispatch => {
-    const response = await pagosService.getSummary(token)
-    dispatch({ type: 'SET_SUMMARY', payload: response.data })
-  }
-}
+    const response = await pagosService.getSummary(token);
+    dispatch({ type: 'SET_SUMMARY', payload: response.data });
+  };
+};
 
-export default summaryReducer
+export default summaryReducer;
 
 /*
   summary: {

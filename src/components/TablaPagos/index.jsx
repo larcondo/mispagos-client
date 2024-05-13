@@ -1,12 +1,12 @@
-import './index.css'
-import FilaPago from '../FilaPago'
-import { Each } from '../../Each'
+import './index.css';
+import FilaPago from '../FilaPago';
+import { Each } from '../../Each';
 
 const TablaPagos = ({ pagos, actualPage, showModalDel, showModalUpd }) => {
 
-  if (!pagos || pagos.length < 1) return null
+  if (!pagos || pagos.length < 1) return null;
 
-  const sortedPagos = pagos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+  const sortedPagos = pagos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
   return(
     <div id='contenedor-tabla'>
@@ -23,15 +23,15 @@ const TablaPagos = ({ pagos, actualPage, showModalDel, showModalUpd }) => {
           </tr>
 
           <Each of={sortedPagos} render={(item, index) => (
-              (index >= (actualPage*20 - 20)) &&
-              (index < (actualPage*20)) &&
-              <FilaPago key={item._id} pago={item} showModalDel={showModalDel} showModalUpd={showModalUpd} />
-            )}
+            (index >= (actualPage*20 - 20)) &&
+            (index < (actualPage*20)) &&
+            <FilaPago key={item._id} pago={item} showModalDel={showModalDel} showModalUpd={showModalUpd} />
+          )}
           />
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default TablaPagos
+export default TablaPagos;

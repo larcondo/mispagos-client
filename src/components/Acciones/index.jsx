@@ -1,16 +1,16 @@
-import './index.css'
+import './index.css';
 
-import { numberToCurrency } from "../../helpers/general"
+import { numberToCurrency } from '../../helpers/general';
 import { MdFilterListAlt } from 'react-icons/md';
 
 const styleIcons = {
   position: 'relative', top: '2px'
-}
+};
 
 const Acciones = ({ pagos, setModalAdd, filtrovis, setFiltrovis }) => {
   return(
     <div id='contenedor-acciones'>
-      
+
       <div id='pagos-info'>
         <span>
           <span id="pagos-entradas-valor">{ pagos.length }</span> <span id="pagos-entradas">entradas</span>
@@ -26,13 +26,13 @@ const Acciones = ({ pagos, setModalAdd, filtrovis, setFiltrovis }) => {
         </button>
         <button id="boton-add" onClick={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          setModalAdd(true)
+          setModalAdd(true);
         }}>
           +
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Acciones
+export default Acciones;

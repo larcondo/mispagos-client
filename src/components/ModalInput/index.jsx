@@ -1,4 +1,4 @@
-import './index.css'
+import './index.css';
 
 const ModalInput = ({ type, name, label, value, onChange }) => {
   return(
@@ -15,7 +15,7 @@ const ModalInput = ({ type, name, label, value, onChange }) => {
         step={type === 'number' ? '0.01' : null}
       />
     </div>
-  )
-}
+  );
+};
 
-export default ModalInput
+export default ModalInput;

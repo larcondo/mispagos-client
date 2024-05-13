@@ -1,42 +1,42 @@
-import '../../css/components/Modals.css'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { createPago } from '../../reducers/pagosReducer'
+import '../../css/components/Modals.css';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createPago } from '../../reducers/pagosReducer';
 
-import ModalHeader from '../ModalHeader'
-import ModalInput from '../ModalInput'
-import ModalSelect from '../ModalSelect'
+import ModalHeader from '../ModalHeader';
+import ModalInput from '../ModalInput';
+import ModalSelect from '../ModalSelect';
 
 function ModalAddPago({ userinfo, visible, setVisible }) {
-  const initialDate = new Date().toISOString().substring(0,10)
-  const dispatch = useDispatch()
-  const [tipo, setTipo] = useState('')
-  const [fecha, setFecha] = useState(initialDate)
-  const [detalle, setDetalle] = useState('')
-  const [importe, setImporte] = useState(0)
-  const [vencimiento, setVencimiento] = useState(initialDate)
-  const [observaciones, setObservaciones] = useState('')
+  const initialDate = new Date().toISOString().substring(0,10);
+  const dispatch = useDispatch();
+  const [tipo, setTipo] = useState('');
+  const [fecha, setFecha] = useState(initialDate);
+  const [detalle, setDetalle] = useState('');
+  const [importe, setImporte] = useState(0);
+  const [vencimiento, setVencimiento] = useState(initialDate);
+  const [observaciones, setObservaciones] = useState('');
 
   const add = () => {
     const newPago = {
       tipo, fecha, detalle, importe,
       vencimiento, observaciones, username: userinfo.name
-    }
+    };
 
-    dispatch(createPago(newPago, userinfo.token))
+    dispatch(createPago(newPago, userinfo.token));
 
-    setVisible(false)
-    borrarCampos()
-  }
+    setVisible(false);
+    borrarCampos();
+  };
 
   const borrarCampos = () => {
-    setTipo('')
-    setFecha(initialDate)
-    setDetalle('')
-    setImporte(0)
-    setVencimiento(initialDate)
-    setObservaciones('')
-  }
+    setTipo('');
+    setFecha(initialDate);
+    setDetalle('');
+    setImporte(0);
+    setVencimiento(initialDate);
+    setObservaciones('');
+  };
 
   return(
     <>
@@ -45,7 +45,7 @@ function ModalAddPago({ userinfo, visible, setVisible }) {
           title='AGREGAR PAGO'
           subtitle='Complete los campos del nuevo pago:'
         />
-        
+
         <ModalSelect label='Tipo:' name='pago-tipo'
           value={tipo} onChange={e => setTipo(e.target.value)}
         />
@@ -72,8 +72,8 @@ function ModalAddPago({ userinfo, visible, setVisible }) {
 
         <div className="modal-botones">
           <button className="boton" onClick={() => {
-            setVisible(false)
-            borrarCampos()
+            setVisible(false);
+            borrarCampos();
           }}>
             Cancelar
           </button>
@@ -86,4 +86,4 @@ function ModalAddPago({ userinfo, visible, setVisible }) {
   );
 }
 
-export default ModalAddPago
+export default ModalAddPago;

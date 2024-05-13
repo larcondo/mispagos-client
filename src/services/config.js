@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { baseUrl } from '../helpers/constants'
-axios.defaults.withCredentials = true
+import axios from 'axios';
+import { baseUrl } from '../helpers/constants';
+axios.defaults.withCredentials = true;
 
 const changeFirstName = (data, token) => {
   return axios.post(
@@ -12,8 +12,8 @@ const changeFirstName = (data, token) => {
         'Content-Type': 'application/json',
       },
     },
-  )
-}
+  );
+};
 
 const changeLastName = (data, token) => {
   return axios.post(
@@ -25,8 +25,8 @@ const changeLastName = (data, token) => {
         'Content-Type': 'application/json',
       },
     },
-  )
-}
+  );
+};
 
 const changeEmail = (data, token) => {
   return axios.post(
@@ -38,11 +38,11 @@ const changeEmail = (data, token) => {
         'Content-Type': 'application/json',
       },
     },
-  )
-}
+  );
+};
 
 export default {
   changeFirstName,
   changeLastName,
   changeEmail,
-}
+};

@@ -13,19 +13,19 @@ const login = (credentials) => {
         'Content-Type': 'application/json'
       },
     }
-  )
-}
+  );
+};
 
 const logout = (username) => {
   return axios.get(
     `${baseUrl}/logout`,
     { name: username },
-  )
-}
+  );
+};
 
 const refresh = () => {
-  return axios.get(`${baseUrl}/refresh`)
-}
+  return axios.get(`${baseUrl}/refresh`);
+};
 
 const register = (userData) => {
   return axios.post(
@@ -37,12 +37,12 @@ const register = (userData) => {
         'Content-Type': 'application/json',
       },
     }
-  )
-}
+  );
+};
 
 export default {
   login,
   logout,
   refresh,
   register,
-}
+};

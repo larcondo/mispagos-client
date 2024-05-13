@@ -1,25 +1,25 @@
-import '../../css/components/Modals.css'
-import { numberToCurrency } from '../../helpers/general'
-import { useDispatch } from 'react-redux'
-import { removePago } from '../../reducers/pagosReducer'
+import '../../css/components/Modals.css';
+import { numberToCurrency } from '../../helpers/general';
+import { useDispatch } from 'react-redux';
+import { removePago } from '../../reducers/pagosReducer';
 
-import ModalHeader from '../ModalHeader'
+import ModalHeader from '../ModalHeader';
 
 function ModalDeletePago({ token, infodel, visible, setVisible }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const remove = () => {
-    const id = infodel._id
-    dispatch(removePago(id, token))
-    setVisible(false)
-  }
+    const id = infodel._id;
+    dispatch(removePago(id, token));
+    setVisible(false);
+  };
 
   return(
     <>
       { visible && <div className="modal">
 
         <ModalHeader title='¿Desea eliminar el siguiente pago?' />
-        
+
         <table className="modal-table">
           <tbody>
             <tr>
@@ -53,7 +53,7 @@ function ModalDeletePago({ token, infodel, visible, setVisible }) {
         </div>
       </div> }
     </>
-  )
+  );
 }
 
-export default ModalDeletePago
+export default ModalDeletePago;

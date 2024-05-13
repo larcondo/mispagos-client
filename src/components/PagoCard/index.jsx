@@ -1,5 +1,5 @@
-import './index.css'
-import { numberToCurrency } from '../../helpers/general'
+import './index.css';
+import { numberToCurrency } from '../../helpers/general';
 
 const PagoCard = ({ pago }) => {
   return(
@@ -14,7 +14,7 @@ const PagoCard = ({ pago }) => {
         { pago?.detalle ?? 'A Very Long Description' }
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default PagoCard
+export default PagoCard;

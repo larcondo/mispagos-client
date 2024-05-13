@@ -1,10 +1,10 @@
-import { useState, createContext, useMemo } from 'react'
+import { useState, createContext, useMemo } from 'react';
 
 const UserContext = createContext();
 
 const UserProvider = (props) => {
-  const [userinfo, setUserinfo] = useState({})
-  const userObject = useMemo(() => ({userinfo, setUserinfo}),[userinfo])
+  const [userinfo, setUserinfo] = useState({});
+  const userObject = useMemo(() => ({ userinfo, setUserinfo }),[userinfo]);
 
   // const values = {
   //   // value: value,
@@ -16,6 +16,6 @@ const UserProvider = (props) => {
       { props.children }
     </UserContext.Provider>
   );
-}
+};
 
-export { UserContext, UserProvider }
+export { UserContext, UserProvider };

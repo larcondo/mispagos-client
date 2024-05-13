@@ -1,12 +1,12 @@
-import './index.css'
-import { useState } from 'react'
+import './index.css';
+import { useState } from 'react';
 import { numberToCurrency } from '../../helpers/general';
-import { MdDelete, MdEditSquare } from 'react-icons/md'
+import { MdDelete, MdEditSquare } from 'react-icons/md';
 
 function FilaPagoSmall({ pago, showModalDel, showModalUpd }) {
-  const [vis, setVis] = useState(false)
+  const [vis, setVis] = useState(false);
 
-  const iconStyle = { position: 'relative', top: '2px', fontSize: '1em' }
+  const iconStyle = { position: 'relative', top: '2px', fontSize: '1em' };
 
   return(
     <div className="fila-small">
@@ -28,7 +28,7 @@ function FilaPagoSmall({ pago, showModalDel, showModalUpd }) {
         <span>
           <button className="boton-tabla boton-delete" onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            showModalDel(pago)
+            showModalDel(pago);
           }}>
             <MdDelete style={iconStyle} />
           </button>
@@ -36,7 +36,7 @@ function FilaPagoSmall({ pago, showModalDel, showModalUpd }) {
         <span>
           <button className="boton-tabla boton-update" onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            showModalUpd(pago)
+            showModalUpd(pago);
           }}>
             <MdEditSquare style={iconStyle} />
           </button>
@@ -54,4 +54,4 @@ function FilaPagoSmall({ pago, showModalDel, showModalUpd }) {
   );
 }
 
-export default FilaPagoSmall
+export default FilaPagoSmall;

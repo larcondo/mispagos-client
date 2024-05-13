@@ -6,13 +6,13 @@ import { MdEditSquare } from 'react-icons/md';
 import configService from '../../services/config';
 
 function Config() {
-  const { userinfo, setUserinfo } = useContext(UserContext)
-  const [modal1, setModal1] = useState(false)
-  const [modal2, setModal2] = useState(false)
-  const [modal3, setModal3] = useState(false)
+  const { userinfo, setUserinfo } = useContext(UserContext);
+  const [modal1, setModal1] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
   const styleIcons = {
     position: 'relative', top: '2px'
-  }
+  };
 
   return(
     <>
@@ -27,42 +27,42 @@ function Config() {
               <MdEditSquare style={styleIcons} /><span className="config-edit-boton-text">Modificar</span>
             </button>
           </ConfigFila>
-          
+
           <ConfigFila text={'Apellido:'} value={ userinfo.lastName }>
             <button className="config-edit-boton" id="config-boton-lastname" onClick={() => setModal2(!modal2)}>
               <MdEditSquare style={styleIcons} /><span className="config-edit-boton-text">Modificar</span>
             </button>
           </ConfigFila>
-          
+
           <ConfigFila text={'E-mail:'} value={ userinfo.email }>
             <button className="config-edit-boton" id="config-boton-email" onClick={() => setModal3(!modal3)}>
               <MdEditSquare style={styleIcons} /><span className="config-edit-boton-text">Modificar</span>
             </button>
           </ConfigFila>
-          
+
           <ConfigFila text={'Rol:'} value={ userinfo.roles }></ConfigFila>
         </tbody>
       </table>
 
-      <ModalConfigFirstName 
-        visible={modal1} 
-        setVisible={setModal1} 
+      <ModalConfigFirstName
+        visible={modal1}
+        setVisible={setModal1}
         userinfo={userinfo}
-        setUserinfo={setUserinfo} 
-      />
-
-      <ModalConfigLastName 
-        visible={modal2} 
-        setVisible={setModal2} 
-        userinfo={userinfo} 
         setUserinfo={setUserinfo}
       />
-      
-      <ModalConfigEmail 
-        visible={modal3} 
-        setVisible={setModal3} 
+
+      <ModalConfigLastName
+        visible={modal2}
+        setVisible={setModal2}
         userinfo={userinfo}
-        setUserinfo={setUserinfo} 
+        setUserinfo={setUserinfo}
+      />
+
+      <ModalConfigEmail
+        visible={modal3}
+        setVisible={setModal3}
+        userinfo={userinfo}
+        setUserinfo={setUserinfo}
       />
 
     </>
@@ -80,28 +80,27 @@ function ConfigFila(props) {
 }
 
 function ModalConfigFirstName({ visible, setVisible, userinfo, setUserinfo }) {
-  
+
   const updateFirstName = () => {
-    const newFirstName = document.getElementById('newFirstName')
-    const data = { name: userinfo.name, firstName: newFirstName.value }
+    const newFirstName = document.getElementById('newFirstName');
+    const data = { name: userinfo.name, firstName: newFirstName.value };
 
     configService.changeFirstName(data, userinfo.token)
-    .then( response => {
-      if (response.status === 200) {
-        const { firstName, ...resto } = userinfo
-        setUserinfo({...resto, firstName: newFirstName.value})
-        setVisible(false)
-        newFirstName.value = ''
-      }
-    })
-    .catch( err => {
-      console.log(err)
-      alert('Hubo un error')
-    })
-  }
+      .then( response => {
+        if (response.status === 200) {
+          setUserinfo({ ...userinfo, firstName: newFirstName.value });
+          setVisible(false);
+          newFirstName.value = '';
+        }
+      })
+      .catch( err => {
+        console.log(err);
+        alert('Hubo un error');
+      });
+  };
 
   return(
-    <div className="modal" style={{display: (visible) ? 'flex' : 'none'}}>
+    <div className="modal" style={{ display: (visible) ? 'flex' : 'none' }}>
       <div className="modal-header">
         <p>Actualizar Nombre:</p>
       </div>
@@ -130,31 +129,30 @@ function ModalConfigFirstName({ visible, setVisible, userinfo, setUserinfo }) {
 
 function ModalConfigLastName({ visible, setVisible, userinfo, setUserinfo }) {
   const updateLastName = () => {
-    const newLastName = document.getElementById('newLastName')
-    const data = { name: userinfo.name, lastName: newLastName.value }
+    const newLastName = document.getElementById('newLastName');
+    const data = { name: userinfo.name, lastName: newLastName.value };
 
     configService.changeLastName(data, userinfo.token)
-    .then( response => {
-      if (response.status === 200) {
-        const { lastName, ...resto } = userinfo
-        setUserinfo({...resto, lastName: newLastName.value})
-        newLastName.value = ''
-        setVisible(false) 
-      }
-    })
-    .catch( err => {
-      console.log(err)
-      alert('Hubo un error')
-    })
-  }
-  
+      .then( response => {
+        if (response.status === 200) {
+          setUserinfo({ ...userinfo, lastName: newLastName.value });
+          newLastName.value = '';
+          setVisible(false) ;
+        }
+      })
+      .catch( err => {
+        console.log(err);
+        alert('Hubo un error');
+      });
+  };
+
   return(
-    <div className="modal" style={{display: (visible) ? 'flex' : 'none'}}>
-      
+    <div className="modal" style={{ display: (visible) ? 'flex' : 'none' }}>
+
       <div className="modal-header">
         <p>Actualizar Apellido:</p>
       </div>
-      
+
       <table className="modal-table">
         <tbody>
           <tr>
@@ -167,7 +165,7 @@ function ModalConfigLastName({ visible, setVisible, userinfo, setUserinfo }) {
           </tr>
         </tbody>
       </table>
-      
+
       <div className="modal-botones">
         <button className="boton" onClick={() => setVisible(false)}>Cancelar</button>
         <button className="boton" onClick={updateLastName}>Actualizar</button>
@@ -179,30 +177,29 @@ function ModalConfigLastName({ visible, setVisible, userinfo, setUserinfo }) {
 
 function ModalConfigEmail({ visible, setVisible, userinfo, setUserinfo }) {
   const updateEmail = () => {
-    const newEmail = document.getElementById('newEmail')
-    const data = { name: userinfo.name, email: newEmail.value }
+    const newEmail = document.getElementById('newEmail');
+    const data = { name: userinfo.name, email: newEmail.value };
 
     configService.changeEmail(data, userinfo.token)
-    .then( response => {
-      if (response.status === 200) {
-        const { email, ...resto } = userinfo
-        setUserinfo({...resto, email: newEmail.value})
-        newEmail.value = ''
-        setVisible(false) 
-      }
-    })
-    .catch( err => {
-      console.log(err)
-      alert('Hubo un error')
-    })
-  }
-  
+      .then( response => {
+        if (response.status === 200) {
+          setUserinfo({ ...userinfo, email: newEmail.value });
+          newEmail.value = '';
+          setVisible(false);
+        }
+      })
+      .catch( err => {
+        console.log(err);
+        alert('Hubo un error');
+      });
+  };
+
   return(
-    <div className="modal" style={{display: (visible) ? 'flex' : 'none'}}>
+    <div className="modal" style={{ display: (visible) ? 'flex' : 'none' }}>
       <div className="modal-header">
         <p>Actualizar E-mail:</p>
       </div>
-      
+
       <table className="modal-table">
         <tbody>
           <tr>
@@ -224,4 +221,4 @@ function ModalConfigEmail({ visible, setVisible, userinfo, setUserinfo }) {
 }
 
 
-export default Config
+export default Config;

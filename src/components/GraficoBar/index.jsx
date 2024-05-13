@@ -2,7 +2,7 @@
 import { Bar } from 'react-chartjs-2';
 
 function GraficoBar( props ) {
-  if (!props.data) return null
+  if (!props.data) return null;
 
   const barOptions = {
     scales: {
@@ -10,7 +10,7 @@ function GraficoBar( props ) {
         ticks: {
           // display: false,
           display: function(context) {
-            return context.chart.width > 400
+            return context.chart.width > 400;
           },
           color: 'hsl(240, 38%, 44%)',
           // minRotation: 90,
@@ -41,22 +41,22 @@ function GraficoBar( props ) {
       }
     },
     plugins: {
-      title: { 
-        display: false, 
-        text: 'Mi bar chart' 
+      title: {
+        display: false,
+        text: 'Mi bar chart'
       },
-      legend: { 
-        display: false, 
+      legend: {
+        display: false,
         position: 'top',
         // align: 'center',
         labels: {
           boxWidth: 20,
           color: 'hsl(240, 38%, 44%)',
           padding: 10,
-        } 
+        }
       },
     }
-  }
+  };
 
   return(
     <div className="chart-bar-container">

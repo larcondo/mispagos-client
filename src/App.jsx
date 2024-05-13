@@ -1,19 +1,19 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // CSS
-import './css/Root.css'
+import './css/Root.css';
 
 // Contexts
-import { UserProvider } from './contexts/userDetails'
+import { UserProvider } from './contexts/userDetails';
 
 // Routes
-import Login from './routes/Login'
-import Register from './routes/Register'
-import Home from './routes/Home'
-import Inicio from './routes/home/Inicio'
-import Config from './routes/home/Config'
-import Graficas from './routes/home/Graficas'
-import Pagos from './routes/home/Pagos'
+import Login from './routes/Login';
+import Register from './routes/Register';
+import Home from './routes/Home';
+import Inicio from './routes/home/Inicio';
+import Config from './routes/home/Config';
+import Graficas from './routes/home/Graficas';
+import Pagos from './routes/home/Pagos';
 
 const router = createBrowserRouter([
   {
@@ -46,14 +46,14 @@ const router = createBrowserRouter([
       },
     ]
   },
-])
+]);
 
 const App = () => {
   return(
     <UserProvider>
       <RouterProvider router={router} />
     </UserProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

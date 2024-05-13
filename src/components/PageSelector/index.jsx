@@ -1,6 +1,6 @@
-import './index.css'
+import './index.css';
 
-const PageSelector = ({ pages = 0, actualPage = 1, onReClick, onAvClick}) => {
+const PageSelector = ({ pages = 0, actualPage = 1, onReClick, onAvClick }) => {
   return(
     <div id='contenedor-paginas'>
       <button type='button' className='boton-paginas'
@@ -19,7 +19,7 @@ const PageSelector = ({ pages = 0, actualPage = 1, onReClick, onAvClick}) => {
         &#9654;
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default PageSelector
+export default PageSelector;

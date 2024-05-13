@@ -1,4 +1,4 @@
-import './index.css'
+import './index.css';
 
 const ModalHeader = ({ title = 'TITLE', subtitle }) => {
   return(
@@ -8,7 +8,7 @@ const ModalHeader = ({ title = 'TITLE', subtitle }) => {
         <p className='subtitle'>{ subtitle }</p>
       }
     </div>
-  )
-}
+  );
+};
 
-export default ModalHeader
+export default ModalHeader;
