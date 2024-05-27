@@ -1,44 +1,20 @@
+import axiosWithAuth from './axios';
 import axios from 'axios';
-import { baseUrl } from '../helpers/constants';
 axios.defaults.withCredentials = true;
 
-const changeFirstName = (data, token) => {
-  return axios.post(
-    `${baseUrl}/config/firstName`,
-    data,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+const changeFirstName = (data) => {
+  const header = { 'Content-Type': 'application/json' };
+  return axiosWithAuth.post('/config/firstName', data, { headers: header });
 };
 
-const changeLastName = (data, token) => {
-  return axios.post(
-    `${baseUrl}/config/lastName`,
-    data,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+const changeLastName = (data) => {
+  const header = { 'Content-Type': 'application/json' };
+  return axiosWithAuth.post('/config/lastName', data, { headers: header });
 };
 
-const changeEmail = (data, token) => {
-  return axios.post(
-    `${baseUrl}/config/email`,
-    data,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+const changeEmail = (data) => {
+  const header = { 'Content-Type': 'application/json' };
+  return axiosWithAuth.post( '/config/email', data, { headers: header });
 };
 
 export default {

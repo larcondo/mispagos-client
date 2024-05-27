@@ -1,38 +1,35 @@
+import axiosWithAuth from './axios';
 import axios from 'axios';
-import { baseUrl } from '../helpers/constants';
+
 axios.defaults.withCredentials = true;
 
-const getSummary = (token) => {
-  return axios.get(`${baseUrl}/pagos/summary`, { headers: { 'Authorization': `Bearer ${token}` } });
+const getSummary = () => {
+  return axiosWithAuth.get('/pagos/summary');
 };
 
-const getAll = async (token) => {
-  const getAllUrl = `${baseUrl}/pagos`;
-  const authHeader = { 'Authorization': `Bearer: ${token}` };
-  const response = await axios.get(getAllUrl,{ headers: authHeader });
+const getAll = async () => {
+  const response = await axiosWithAuth.get('/pagos');
 
   return response.data;
 };
 
-const add = async (pago, token) => {
-  const addUrl = `${baseUrl}/pagos`;
-  const authHeader = { 'Authorization': `Bearer: ${token}`, 'Content-Type': 'application/json', };
-  const response = await axios.post(addUrl, pago, { headers: authHeader });
+const add = async (pago) => {
+  const header = { 'Content-Type': 'application/json', };
+  const response = await axiosWithAuth.post('/pagos', pago, { headers: header });
 
   return response.data.added;
 };
 
-const remove = async (id, token) => {
-  const removeUrl = `${baseUrl}/pagos/${id}`;
-  const authHeader = { 'Authorization': `Bearer: ${token}` };
-  const response = await axios.delete(removeUrl, { headers: authHeader });
+const remove = async (id) => {
+  const removeUrl = `/pagos/${id}`;
+  const response = await axiosWithAuth.delete(removeUrl);
   return response.data.deleted;
 };
 
-const update = async (id, newPago, token) => {
-  const updateUrl = `${baseUrl}/pagos/${id}`;
-  const authHeader = { 'Authorization': `Bearer: ${token}`, 'Content-Type': 'application/json', };
-  const response = await axios.put(updateUrl, newPago, { headers: authHeader });
+const update = async (id, newPago) => {
+  const updateUrl = `/pagos/${id}`;
+  const header = { 'Content-Type': 'application/json', };
+  const response = await axiosWithAuth.put(updateUrl, newPago, { headers: header });
   return response.data.updated;
 };
 

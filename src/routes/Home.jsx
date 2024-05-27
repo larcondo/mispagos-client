@@ -3,6 +3,7 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../contexts/userDetails';
 import userService from '../services/user';
+import { setToken } from '../utils/token';
 import Footer from '../components/Footer';
 import {
   MdAccountCircle, MdHome, MdPayments, MdBarChart, MdSettings
@@ -41,7 +42,7 @@ function Home() {
       userService.refresh()
         .then( response => {
           if (response.status === 200) {
-            setUserinfo( prev => {return { ...prev, token: response.data.accessToken }; });
+            setToken(response.data.accessToken);
           } else {
             alert('No se recibio el access token');
             logout();
@@ -74,6 +75,7 @@ function Home() {
       .then(res => {
         if(res.status === 200) {
           setUserinfo({});
+          setToken(null);
           navigate('/');
         }
       })

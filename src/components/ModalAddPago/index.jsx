@@ -23,7 +23,7 @@ function ModalAddPago({ userinfo, visible, setVisible }) {
       vencimiento, observaciones, username: userinfo.name
     };
 
-    dispatch(createPago(newPago, userinfo.token));
+    dispatch(createPago(newPago));
 
     setVisible(false);
     borrarCampos();

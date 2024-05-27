@@ -18,7 +18,7 @@ function Config() {
   const updateFirstName = (value) => {
     const data = { name: userinfo.name, firstName: value };
 
-    configService.changeFirstName(data, userinfo.token)
+    configService.changeFirstName(data)
       .then( response => {
         if (response.status === 200) {
           setUserinfo({ ...userinfo, firstName: value });
@@ -34,7 +34,7 @@ function Config() {
   const updateLastName = (value) => {
     const data = { name: userinfo.name, lastName: value };
 
-    configService.changeLastName(data, userinfo.token)
+    configService.changeLastName(data)
       .then( response => {
         if (response.status === 200) {
           setUserinfo({ ...userinfo, lastName: value });
@@ -50,7 +50,7 @@ function Config() {
   const updateEmail = (value) => {
     const data = { name: userinfo.name, email: value };
 
-    configService.changeEmail(data, userinfo.token)
+    configService.changeEmail(data)
       .then( response => {
         if (response.status === 200) {
           setUserinfo({ ...userinfo, email: value });

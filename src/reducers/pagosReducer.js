@@ -42,30 +42,30 @@ const pagosSlice = createSlice({
 
 export const { sendPagos, addPago, deletePago, updatePago, cleanState } = pagosSlice.actions;
 
-export const initializePagos = (token) => {
+export const initializePagos = () => {
   return async dispatch => {
-    const pagos = await pagosService.getAll(token);
+    const pagos = await pagosService.getAll();
     dispatch(sendPagos(pagos));
   };
 };
 
-export const createPago = (content, token) => {
+export const createPago = (content) => {
   return async dispatch => {
-    const newPago = await pagosService.add(content, token);
+    const newPago = await pagosService.add(content);
     dispatch(addPago(newPago));
   };
 };
 
-export const removePago = (id, token) => {
+export const removePago = (id) => {
   return async dispatch => {
-    const deletedPago = await pagosService.remove(id, token);
+    const deletedPago = await pagosService.remove(id);
     dispatch(deletePago(deletedPago));
   };
 };
 
-export const modifyPago = (id, toUpdatePago, token) => {
+export const modifyPago = (id, toUpdatePago) => {
   return async dispatch => {
-    const updated = await pagosService.update(id, toUpdatePago, token);
+    const updated = await pagosService.update(id, toUpdatePago);
     dispatch(updatePago(updated));
   };
 };

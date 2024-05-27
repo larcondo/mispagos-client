@@ -5,12 +5,12 @@ import { removePago } from '../../reducers/pagosReducer';
 
 import ModalHeader from '../ModalHeader';
 
-function ModalDeletePago({ token, infodel, visible, setVisible }) {
+function ModalDeletePago({ infodel, visible, setVisible }) {
   const dispatch = useDispatch();
 
   const remove = () => {
     const id = infodel._id;
-    dispatch(removePago(id, token));
+    dispatch(removePago(id));
     setVisible(false);
   };
 

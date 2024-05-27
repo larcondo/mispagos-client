@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { UserContext } from '../contexts/userDetails';
 import userService from '../services/user';
+import { setToken } from '../utils/token';
 
 const UNKNOWN_ERROR_TEXT = 'Error desconocido. Inténtelo más tarde.';
 
@@ -39,7 +40,8 @@ function Login() {
       .then(res => {
         if (res.status === 200) {
           const { _id, ...userData } = res.data.userData;
-          setUserinfo({ ...userData, token: res.data.accessToken });
+          setUserinfo({ ...userData });
+          setToken(res.data.accessToken);
           setIsloading(false);
           navigate('home/inicio');
         }

@@ -12,9 +12,9 @@ const summaryReducer = (state = initialState, action) => {
   }
 };
 
-export const summaryChange = token => {
+export const summaryChange = () => {
   return async dispatch => {
-    const response = await pagosService.getSummary(token);
+    const response = await pagosService.getSummary();
     dispatch({ type: 'SET_SUMMARY', payload: response.data });
   };
 };

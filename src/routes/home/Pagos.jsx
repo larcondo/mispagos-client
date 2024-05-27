@@ -116,7 +116,6 @@ function Pagos() {
           setVisible={hideModalUpd}
           idToUpdate={infoupd}
           username={userinfo.name}
-          token={userinfo.token}
         />
       }
 
@@ -125,7 +124,6 @@ function Pagos() {
         visible={modalDel}
         setVisible={setModalDel}
         infodel={infodel}
-        token={userinfo.token}
       />
 
     </>

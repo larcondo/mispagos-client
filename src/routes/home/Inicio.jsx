@@ -15,10 +15,8 @@ function Inicio() {
   const [isloading, setIsloading] = useState(true);
 
   const initData = () => {
-    const { token } = userinfo;
-
-    dispatch(summaryChange(token));
-    dispatch(initializePagos(token));
+    dispatch(summaryChange());
+    dispatch(initializePagos());
 
     setIsloading(false);
   };

@@ -8,7 +8,7 @@ import ModalHeader from '../ModalHeader';
 import ModalInput from '../ModalInput';
 import ModalSelect from '../ModalSelect';
 
-function ModalUpdatePago({ token, idToUpdate, setVisible }) {
+function ModalUpdatePago({ idToUpdate, setVisible }) {
   const dispatch = useDispatch();
   const updateSelector = createSelector([state => state.pagos], (pagos) => {
     return pagos.resultado.filter(p => p._id === idToUpdate)[0];
@@ -26,7 +26,7 @@ function ModalUpdatePago({ token, idToUpdate, setVisible }) {
 
   const update = () => {
     const toUpdate = { tipo, fecha, detalle, importe, vencimiento, observaciones };
-    dispatch(modifyPago(idToUpdate, toUpdate, token));
+    dispatch(modifyPago(idToUpdate, toUpdate));
     setVisible(false);
   };
 
