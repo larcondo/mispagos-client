@@ -1,6 +1,6 @@
 import './index.css';
 
-import { numberToCurrency } from '../../helpers/general';
+import { numberToCurrency } from '@helpers/general';
 import { MdFilterListAlt } from 'react-icons/md';
 
 const styleIcons = {

@@ -1,5 +1,5 @@
 import './index.css';
-import { Each } from '../../Each';
+import { Each } from '@/Each';
 
 const ChartBarButtons = ({ options, activeOption, onClick }) => {
   if (!options) return null;

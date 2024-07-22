@@ -1,6 +1,6 @@
 import './index.css';
-import FilaPagoSmall from '../FilaPagoSmall';
-import { Each } from '../../Each';
+import FilaPagoSmall from '@components/FilaPagoSmall';
+import { Each } from '@/Each';
 
 const PagosList = ({ pagos, actualPage, showModalDel, showModalUpd }) => {
   if (!pagos) return null;

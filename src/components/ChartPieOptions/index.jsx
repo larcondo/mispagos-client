@@ -1,6 +1,6 @@
 import './index.css';
-import { monthToText } from '../../helpers/general';
-import ChartPieSelect from '../ChartPieSelect';
+import { monthToText } from '@helpers/general';
+import ChartPieSelect from '@components/ChartPieSelect';
 
 const ChartPieOptions = ({ year, month, onChangeYear, onChangeMonth, yearOptions, monthOptions }) => {
   if (!yearOptions) return null;

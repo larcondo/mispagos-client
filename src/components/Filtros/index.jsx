@@ -1,6 +1,6 @@
 import './index.css';
-import { monthToText } from '../../helpers/general';
-import { filterChange } from '../../reducers/filtrosReducer';
+import { monthToText } from '@helpers/general';
+import { filterChange } from '@reducers/filtrosReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
 import FiltroSelect from './FiltroSelect';

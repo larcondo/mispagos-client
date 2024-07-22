@@ -1,11 +1,11 @@
-import '../../css/components/Modals.css';
+import '@css/components/Modals.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createPago } from '../../reducers/pagosReducer';
+import { createPago } from '@reducers/pagosReducer';
 
-import ModalHeader from '../ModalHeader';
-import ModalInput from '../ModalInput';
-import ModalSelect from '../ModalSelect';
+import ModalHeader from '@components/ModalHeader';
+import ModalInput from '@components/ModalInput';
+import ModalSelect from '@components/ModalSelect';
 
 function ModalAddPago({ userinfo, visible, setVisible }) {
   const initialDate = new Date().toISOString().substring(0,10);

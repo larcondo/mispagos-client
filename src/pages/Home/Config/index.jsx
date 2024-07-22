@@ -1,11 +1,11 @@
-import '../../css/Config.css';
+import '@css/Config.css';
+import { UserContext } from '@contexts/userDetails';
 import { useContext, useState } from 'react';
-import { UserContext } from '../../contexts/userDetails';
 import { MdEditSquare } from 'react-icons/md';
 
-import configService from '../../services/config';
+import configService from '@services/config';
 
-import ModalConfig from '../../components/ModalConfig';
+import ModalConfig from '@components/ModalConfig';
 
 function Config() {
   const { userinfo, setUserinfo } = useContext(UserContext);

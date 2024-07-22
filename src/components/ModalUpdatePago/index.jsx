@@ -1,12 +1,12 @@
-import '../../css/components/Modals.css';
+import '@css/components/Modals.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
-import { modifyPago } from '../../reducers/pagosReducer';
+import { modifyPago } from '@reducers/pagosReducer';
 
-import ModalHeader from '../ModalHeader';
-import ModalInput from '../ModalInput';
-import ModalSelect from '../ModalSelect';
+import ModalHeader from '@components/ModalHeader';
+import ModalInput from '@components/ModalInput';
+import ModalSelect from '@components/ModalSelect';
 
 function ModalUpdatePago({ idToUpdate, setVisible }) {
   const dispatch = useDispatch();

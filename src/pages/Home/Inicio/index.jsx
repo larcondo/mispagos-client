@@ -1,12 +1,12 @@
-import '../../css/Inicio.css';
+import '@css/Inicio.css';
 import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../contexts/userDetails';
+import { UserContext } from '@contexts/userDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializePagos } from '../../reducers/pagosReducer';
-import { summaryChange } from '../../reducers/summaryReducer';
+import { initializePagos } from '@reducers/pagosReducer';
+import { summaryChange } from '@reducers/summaryReducer';
 
-import SummaryPanel from '../../components/SummaryPanel';
-import SummaryLastEight from '../../components/SummaryLastEight';
+import SummaryPanel from '@components/SummaryPanel';
+import SummaryLastEight from '@components/SummaryLastEight';
 
 function Inicio() {
   const { userinfo } = useContext(UserContext);

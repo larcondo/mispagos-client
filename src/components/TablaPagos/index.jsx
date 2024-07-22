@@ -1,6 +1,6 @@
 import './index.css';
-import FilaPago from '../FilaPago';
-import { Each } from '../../Each';
+import FilaPago from '@components/FilaPago';
+import { Each } from '@/Each';
 
 const TablaPagos = ({ pagos, actualPage, showModalDel, showModalUpd }) => {
 

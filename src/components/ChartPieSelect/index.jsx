@@ -1,4 +1,4 @@
-import { Each } from '../../Each';
+import { Each } from '@/Each';
 
 const ChartPieSelect = ({ name, label, value, onChange, options, modifier }) => {
   return(

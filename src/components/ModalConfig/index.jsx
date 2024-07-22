@@ -1,6 +1,6 @@
-import '../../css/components/Modals.css';
+import '@css/components/Modals.css';
 import { useState } from 'react';
-import ModalHeader from '../ModalHeader';
+import ModalHeader from '@components/ModalHeader';
 
 const ModalConfig = ({ visible, setVisible, onAcept, title, actualValue }) => {
   const [value, setValue] = useState('');

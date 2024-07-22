@@ -1,5 +1,5 @@
 import './index.css';
-import PagoCard from '../PagoCard';
+import PagoCard from '@components/PagoCard';
 
 const SummaryLastEight = ({ pagos }) => {
   if (!pagos || pagos.length < 1) return <p>No se encontraron pagos.</p>;

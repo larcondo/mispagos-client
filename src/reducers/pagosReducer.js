@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import pagosService from '../services/pagos';
+import pagosService from '@services/pagos';
 
 const pagosSlice = createSlice({
   name: 'pagos',

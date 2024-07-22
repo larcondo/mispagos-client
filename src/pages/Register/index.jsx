@@ -1,12 +1,12 @@
-import '../css/Register.css';
+import '@css/Register.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   validarNombreUsuario,
   validarEmail,
   validarPassword
-} from '../helpers/general';
-import userService from '../services/user';
+} from '@helpers/general';
+import userService from '@services/user';
 
 function Register() {
   const [fname, setFname] = useState('');

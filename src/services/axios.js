@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { baseUrl } from '../helpers/constants';
-import { getToken } from '../utils/token';
+import { baseUrl } from '@helpers/constants';
+import { getToken } from '@utils/token';
 
 const axiosWithAuth = axios.create({
   baseURL: baseUrl,

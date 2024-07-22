@@ -13,6 +13,9 @@ module.exports = {
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
+  global: {
+    '_': 'readonly',
+  },
   rules: {
     'indent': ['error', 2],
     'linebreak-style': ['error', 'unix'],

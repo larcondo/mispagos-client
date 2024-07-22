@@ -1,4 +1,4 @@
-import pagosService from '../services/pagos';
+import pagosService from '@services/pagos';
 const initialState = {};
 
 const summaryReducer = (state = initialState, action) => {

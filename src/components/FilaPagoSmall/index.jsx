@@ -1,6 +1,6 @@
 import './index.css';
 import { useState } from 'react';
-import { numberToCurrency } from '../../helpers/general';
+import { numberToCurrency } from '@helpers/general';
 import { MdDelete, MdEditSquare } from 'react-icons/md';
 
 function FilaPagoSmall({ pago, showModalDel, showModalUpd }) {

@@ -1,12 +1,12 @@
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 // ChartJS.register(ArcElement, Tooltip, Legend)
-import '../../css/Graficas.css';
+import '@css/Graficas.css';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import GraficoBar from '../../components/GraficoBar';
-import GraficoPie from '../../components/GraficoPie';
-import ChartBarButtons from '../../components/ChartBarButtons';
-import ChartPieOptions from '../../components/ChartPieOptions';
+import GraficoBar from '@components/GraficoBar';
+import GraficoPie from '@components/GraficoPie';
+import ChartBarButtons from '@components/ChartBarButtons';
+import ChartPieOptions from '@components/ChartPieOptions';
 
 function Graficas() {
   const [isloading, setIsloading] = useState(true);

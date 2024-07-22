@@ -1,17 +1,17 @@
-import '../css/Home.css';
+import '@css/Home.css';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
-import { UserContext } from '../contexts/userDetails';
-import userService from '../services/user';
-import { setToken } from '../utils/token';
-import Footer from '../components/Footer';
+import { UserContext } from '@contexts/userDetails';
+import userService from '@services/user';
+import { setToken } from '@utils/token';
+import Footer from '@components/Footer';
 import {
   MdAccountCircle, MdHome, MdPayments, MdBarChart, MdSettings
 } from 'react-icons/md';
-import MisPagosLogo from '../assets/recibo.png';
+import MisPagosLogo from '@assets/recibo.png';
 
 import { useDispatch } from 'react-redux';
-import { cleanState } from '../reducers/pagosReducer';
+import { cleanState } from '@reducers/pagosReducer';
 
 // const INTERVALO_REFRESH = 1000 * 60 * 14
 const INTERVALO_REFRESH = 1000 * 60 * 15;

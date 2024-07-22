@@ -1,9 +1,9 @@
-import '../../css/components/Modals.css';
-import { numberToCurrency } from '../../helpers/general';
+import '@css/components/Modals.css';
+import { numberToCurrency } from '@helpers/general';
 import { useDispatch } from 'react-redux';
-import { removePago } from '../../reducers/pagosReducer';
+import { removePago } from '@reducers/pagosReducer';
 
-import ModalHeader from '../ModalHeader';
+import ModalHeader from '@components/ModalHeader';
 
 function ModalDeletePago({ infodel, visible, setVisible }) {
   const dispatch = useDispatch();

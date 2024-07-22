@@ -1,9 +1,9 @@
-import '../css/Login.css';
+import '@css/Login.css';
 import { useState, useContext } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { UserContext } from '../contexts/userDetails';
-import userService from '../services/user';
-import { setToken } from '../utils/token';
+import { UserContext } from '@contexts/userDetails';
+import userService from '@services/user';
+import { setToken } from '@utils/token';
 
 const UNKNOWN_ERROR_TEXT = 'Error desconocido. Inténtelo más tarde.';
 

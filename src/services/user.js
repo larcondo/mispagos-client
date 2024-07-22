@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl } from '../helpers/constants';
+import { baseUrl } from '@helpers/constants';
 
 axios.defaults.withCredentials = true;
 

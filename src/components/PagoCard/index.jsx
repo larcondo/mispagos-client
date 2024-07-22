@@ -1,5 +1,5 @@
 import './index.css';
-import { numberToCurrency } from '../../helpers/general';
+import { numberToCurrency } from '@helpers/general';
 
 const PagoCard = ({ pago }) => {
   return(

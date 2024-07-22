@@ -1,15 +1,15 @@
-import '../../css/Pagos.css';
+import '@css/Pagos.css';
 import { useEffect, useContext, useState } from 'react';
-import { UserContext } from '../../contexts/userDetails';
+import { UserContext } from '@contexts/userDetails';
 
-import ModalAddPago from '../../components/ModalAddPago';
-import ModalUpdatePago from '../../components/ModalUpdatePago';
-import ModalDeletePago from '../../components/ModalDeletePago';
-import Acciones from '../../components/Acciones';
-import Filtros from '../../components/Filtros';
-import PageSelector from '../../components/PageSelector';
-import TablaPagos from '../../components/TablaPagos';
-import PagosList from '../../components/PagosList';
+import ModalAddPago from '@components/ModalAddPago';
+import ModalUpdatePago from '@components/ModalUpdatePago';
+import ModalDeletePago from '@components/ModalDeletePago';
+import Acciones from '@components/Acciones';
+import Filtros from '@components/Filtros';
+import PageSelector from '@components/PageSelector';
+import TablaPagos from '@components/TablaPagos';
+import PagosList from '@components/PagosList';
 
 import { useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
